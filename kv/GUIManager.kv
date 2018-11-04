@@ -1,0 +1,2215 @@
+# The UI Aspect of the GUI
+
+#:import Factory kivy.factory.Factory
+#:import sm kivy.uix.screenmanager
+#:set default_font "kv/fonts/MavenPro-Regular.ttf"
+
+#:include force kv/MenuScreen.kv
+#:include force kv/FutureCaseOverviewScreen.kv
+
+
+
+# Possible fonts: "fonts/Jaldi-Regular.ttf", "fonts/MavenPro-Regular.ttf", "fonts/Ubuntu-Regular.ttf"
+
+ScreenManager:
+    id: screen_manager
+    transition: sm.FadeTransition(duration='.2')
+    #transition: sm.WipeTransition()
+    #transition: sm.NoTransition()
+
+    MenuScreen:
+        id: menu_screen
+        name: 'MenuScreen'
+        manager: 'screen_manager'
+    FutureCaseOverviewScreen:
+        id: future_case_overview_screen
+        name: 'FutureCaseOverviewScreen'
+        manager: 'screen_manager'
+        # session_storage: session_storage
+    # NewPatientScreen:
+    #     id: newpatient_screen
+    #     name: 'NewPatientScreen'
+    #     manager: 'screen_manager'
+    #     cloudAccess: session_storage.cloudAccess
+    #     aidaDataBaseHandler: aida_data_base_handler
+    #     sessionStorage: session_storage
+    # SearchPatientsScreen:
+    #     id: searchpatients_screen
+    #     name: 'SearchPatientsScreen'
+    #     manager: 'screen_manager'
+    #     cloudAccess: session_storage.cloudAccess
+    #     sessionStorage: session_storage
+    # PatientInfoScreen:
+    #     id: patientinfo_screen
+    #     name: 'PatientInfoScreen'
+    #     manager: 'screen_manager'
+    #     #cloudAccess: session_storage.cloudAccess
+    #     sessionStorage: session_storage
+    # CaseCheckpointScreen:
+    #     id: casecheckpoint_screen
+    #     name: 'CaseCheckpointScreen'
+    #     manager: 'screen_manager'
+    #     cloudAccess: session_storage.cloudAccess
+    #     session_storage: session_storage
+    # LocationSelectionScreen:
+    #     id: locationselection_screen
+    #     name: 'LocationSelectionScreen'
+    #     manager: 'screen_manager'
+    #     sessionStorage: session_storage
+    # ImagingScreen:
+    #     id: imaging_screen
+    #     name: 'ImagingScreen'
+    #     manager: 'screen_manager'
+    #     debugMode: session_storage.debugMode
+    #     session_storage: session_storage
+    #     aidaDataBaseHandler: aida_data_base_handler
+    # BoundingBoxScreen:
+    #     id: boundingbox_screen
+    #     name: 'BoundingBoxScreen'
+    #     manager: 'screen_manager'
+    #     sessionStorage: session_storage
+    # AnalysisScreen:
+    #     id: analysis_screen
+    #     name: 'AnalysisScreen'
+    #     manager: 'screen_manager'
+    #     sessionStorage: session_storage
+    # AidaDataBaseHandler:
+    #     id: aida_data_base_handler
+    #     sessionStorage: session_storage
+    # SessionStorage:
+    #     id: session_storage
+
+
+
+# <MenuScreen>:
+#     on_pre_enter: root.set_user_information()
+#     welcome_label: welcome_label
+#     canvas.before:
+#         Rectangle:
+#             pos: self.pos
+#             size: self.size
+#             source: "kv/images/newload_back_doctor.png"
+#     FloatLayout:
+#         orientation: 'vertical'
+#         Label:
+#             id: welcome_label
+#             text: ''
+#             font_size: self.height * 0.5
+#             font_name: default_font
+#             size_hint: (1, .1)
+#             halign: 'center'
+#             pos_hint: {'x':0, 'y': 0.85}
+#         BoxLayout:
+#             size_hint: (1, .4)
+#             pos_hint: {'x': 0, 'y': 0.3}
+#             orientation: 'horizontal'
+#             spacing: 10
+
+#             Button:
+#                 text: 'Income/Expenditure Overview'
+#                 on_release: app.load_overview()
+#             Button:
+#                 text: 'Income/Expenditure Overview'
+#                 on_release: app.load_overview()
+#             Button:
+#                 text: 'Income/Expenditure Overview'
+#                 on_release: app.load_overview()
+#             Button:
+#                 text: 'Income/Expenditure Overview'
+#                 on_release: app.load_overview()
+#             # Button:
+#             #     size_hint: 1, 1
+#             #     on_release: app.root.current = 'NewPatientScreen'
+            #     background_normal: 'kv/images/add_patient.png'
+            #     background_down: 'kv/images/add_patient_pressed.png'
+            # Button:
+            #     size_hint: 1, 1
+            #     on_release: app.root.current = 'SearchPatientsScreen'
+            #     background_normal: 'kv/images/search_patient.png'
+            #     background_down: 'kv/images/search_patient_pressed.png'
+            # Button:
+            #     size_hint: 1, 1
+            #     on_release: app.root.current = 'NewPatientScreen'
+            #     background_normal: 'kv/images/import_patient.png'
+            #     background_down: 'kv/images/import_patient_pressed.png'
+
+# <NewPatientScreen>:
+#     on_pre_leave: root.clearAllErrorMessages()
+
+#     first_name: new_first_name
+#     middle_name: new_middle_name
+#     last_name: new_last_name
+#     race: new_race
+#     sex: new_sex
+#     dob: new_dob
+#     postal_code: new_postal_code
+#     cancerHx: new_cancerhx
+
+#     first_name_error: new_first_name_error
+#     middle_name_error: new_middle_name_error
+#     last_name_error: new_last_name_error
+#     race_error: new_race_error
+#     sex_error: new_sex_error
+#     dob_error: new_dob_error
+#     postal_code_error: new_postal_code_error
+#     cancerHx_error: new_cancerHx_error
+
+#     canvas.before:
+#         Rectangle:
+#             pos: self.pos
+#             size: self.size
+#             source: "kv/images/newload_back_doctor.png"
+#     FloatLayout:
+#         size_hint: (0.6, 0.95)
+#         pos_hint: {'x':0.2, 'y': 0.025}
+#         Image:
+#             source: "kv/images/add_patient_icon.png"
+#             size_hint: (0.45, 0.3)
+#             keep_ratio: True
+#             pos_hint: {'x': 0.275, 'y': 0.7}
+#         Label:
+#             text: 'Please fill out patient information'
+#             font_size: self.height * 0.5
+#             font_name: default_font
+#             size_hint: (0.2, .05)
+#             halign: 'center'
+#             pos_hint: {'x':0.4, 'y': 0.67}
+#         BoxLayout:
+#             size_hint: (0.4, .5)
+#             pos_hint: {'x': 0.3, 'y': 0.15}
+#             orientation: 'vertical'
+#             spacing: 10
+#             padding: 30
+#             canvas.before:
+#                 BorderImage:
+#                     source: 'kv/images/new_patient_container_back.png'
+#                     pos: self.x - 3, self.y - 3
+#                     size: self.width + 6, self.height + 6
+#             FloatLayout:
+#                 TextInput:
+#                     id: new_first_name
+#                     hint_text: 'First name'
+#                     font_size: self.height * 0.4
+#                     font_name: default_font
+#                     background_color: 0, 0, 0, 0
+#                     multiline: False
+#                     size_hint: (1, 1)
+#                     pos_hint: {'x': 0, 'y':0}
+#                     canvas.before:
+#                         Color:
+#                             rgb: 1, 1, 1, 1
+#                         BorderImage:
+#                             source: 'kv/images/text_back_underline_white.png'
+#                             pos: self.x, self.y + self.height * 0.05
+#                             size: self.width, self.height
+#                 Label:
+#                     id: new_first_name_error
+#                     font_size: self.height * 0.3
+#                     font_name: default_font
+#                     color: 1,0,0
+#                     text_size: self.size
+#                     size_hint: (0.4, 1)
+#                     pos_hint: {'x': 0.6, 'y':0}
+#                     halign: 'right'
+#                     valign: 'middle'
+#             FloatLayout:
+#                 TextInput:
+#                     id: new_middle_name
+#                     hint_text: 'Middle name'
+#                     font_size: self.height * 0.4
+#                     font_name: default_font
+#                     background_color: 0, 0, 0, 0
+#                     multiline: False
+#                     size_hint: (1, 1)
+#                     pos_hint: {'x': 0, 'y':0}
+#                     canvas.before:
+#                         Color:
+#                             rgb: 1, 1, 1, 1
+#                         BorderImage:
+#                             source: 'kv/images/text_back_underline_white.png'
+#                             pos: self.x, self.y + self.height * 0.05
+#                             size: self.width, self.height
+#                 Label:
+#                     id: new_middle_name_error
+#                     font_size: self.height * 0.3
+#                     font_name: default_font
+#                     color: 1,0,0
+#                     text_size: self.size
+#                     size_hint: (0.4, 1)
+#                     pos_hint: {'x': 0.6, 'y':0}
+#                     halign: 'right'
+#                     valign: 'middle'
+#             FloatLayout:
+#                 TextInput:
+#                     id: new_last_name
+#                     hint_text: 'Last name'
+#                     font_size: self.height * 0.4
+#                     font_name: default_font
+#                     background_color: 0, 0, 0, 0
+#                     multiline: False
+#                     size_hint: (1, 1)
+#                     pos_hint: {'x': 0, 'y':0}
+#                     canvas.before:
+#                         Color:
+#                             rgb: 1, 1, 1, 1
+#                         BorderImage:
+#                             source: 'kv/images/text_back_underline_white.png'
+#                             pos: self.x, self.y + self.height * 0.05
+#                             size: self.width, self.height
+#                 Label:
+#                     id: new_last_name_error
+#                     font_size: self.height * 0.3
+#                     font_name: default_font
+#                     color: 1,0,0
+#                     text_size: self.size
+#                     size_hint: (0.4, 1)
+#                     pos_hint: {'x': 0.6, 'y':0}
+#                     halign: 'right'
+#                     valign: 'middle'
+#             FloatLayout:
+#                 TextInput:
+#                     id: new_race
+#                     hint_text: 'Race'
+#                     font_size: self.height * 0.4
+#                     font_name: default_font
+#                     background_color: 0, 0, 0, 0
+#                     multiline: False
+#                     size_hint: (1, 1)
+#                     pos_hint: {'x': 0, 'y':0}
+#                     canvas.before:
+#                         Color:
+#                             rgb: 1, 1, 1, 1
+#                         BorderImage:
+#                             source: 'kv/images/text_back_underline_white.png'
+#                             pos: self.x, self.y + self.height * 0.05
+#                             size: self.width, self.height
+#                 Label:
+#                     id: new_race_error
+#                     font_size: self.height * 0.3
+#                     font_name: default_font
+#                     color: 1,0,0
+#                     text_size: self.size
+#                     size_hint: (0.4, 1)
+#                     pos_hint: {'x': 0.6, 'y':0}
+#                     halign: 'right'
+#                     valign: 'middle'
+#             FloatLayout:
+#                 TextInput:
+#                     id: new_sex
+#                     hint_text: 'Sex'
+#                     font_size: self.height * 0.4
+#                     font_name: default_font
+#                     background_color: 0, 0, 0, 0
+#                     multiline: False
+#                     size_hint: (1, 1)
+#                     pos_hint: {'x': 0, 'y':0}
+#                     canvas.before:
+#                         Color:
+#                             rgb: 1, 1, 1, 1
+#                         BorderImage:
+#                             source: 'kv/images/text_back_underline_white.png'
+#                             pos: self.x, self.y + self.height * 0.05
+#                             size: self.width, self.height
+#                 Label:
+#                     id: new_sex_error
+#                     font_size: self.height * 0.3
+#                     font_name: default_font
+#                     color: 1,0,0
+#                     text_size: self.size
+#                     size_hint: (0.4, 1)
+#                     pos_hint: {'x': 0.6, 'y':0}
+#                     halign: 'right'
+#                     valign: 'middle'
+#             FloatLayout:
+#                 TextInput:
+#                     id: new_dob
+#                     hint_text: 'Date of Birth (dd/mm/yyyy)'
+#                     font_size: self.height * 0.4
+#                     font_name: default_font
+#                     background_color: 0, 0, 0, 0
+#                     multiline: False
+#                     size_hint: (1, 1)
+#                     pos_hint: {'x': 0, 'y':0}
+#                     canvas.before:
+#                         Color:
+#                             rgb: 1, 1, 1, 1
+#                         BorderImage:
+#                             source: 'kv/images/text_back_underline_white.png'
+#                             pos: self.x, self.y + self.height * 0.05
+#                             size: self.width, self.height
+#                 Label:
+#                     id: new_dob_error
+#                     font_size: self.height * 0.3
+#                     font_name: default_font
+#                     color: 1,0,0
+#                     text_size: self.size
+#                     size_hint: (0.4, 1)
+#                     pos_hint: {'x': 0.6, 'y':0}
+#                     halign: 'right'
+#                     valign: 'middle'
+#             FloatLayout:
+#                 TextInput:
+#                     id: new_postal_code
+#                     hint_text: 'Postal Code'
+#                     font_size: self.height * 0.4
+#                     font_name: default_font
+#                     background_color: 0, 0, 0, 0
+#                     multiline: False
+#                     size_hint: (1, 1)
+#                     pos_hint: {'x': 0, 'y':0}
+#                     canvas.before:
+#                         Color:
+#                             rgb: 1, 1, 1, 1
+#                         BorderImage:
+#                             source: 'kv/images/text_back_underline_white.png'
+#                             pos: self.x, self.y + self.height * 0.05
+#                             size: self.width, self.height
+#                 Label:
+#                     id: new_postal_code_error
+#                     font_size: self.height * 0.3
+#                     font_name: default_font
+#                     color: 1,0,0
+#                     text_size: self.size
+#                     size_hint: (0.4, 1)
+#                     pos_hint: {'x': 0.6, 'y':0}
+#                     halign: 'right'
+#                     valign: 'middle'
+#             FloatLayout:
+#                 TextInput:
+#                     id: new_cancerhx
+#                     hint_text: 'Cancer HX'
+#                     font_size: self.height * 0.4
+#                     font_name: default_font
+#                     background_color: 0, 0, 0, 0
+#                     multiline: False
+#                     size_hint: (1, 1)
+#                     pos_hint: {'x': 0, 'y':0}
+#                     canvas.before:
+#                         Color:
+#                             rgb: 1, 1, 1, 1
+#                         BorderImage:
+#                             source: 'kv/images/text_back_underline_white.png'
+#                             pos: self.x, self.y + self.height * 0.05
+#                             size: self.width, self.height
+#                 Label:
+#                     id: new_cancerHx_error
+#                     font_size: self.height * 0.3
+#                     font_name: default_font
+#                     color: 1,0,0
+#                     text_size: self.size
+#                     size_hint: (0.4, 1)
+#                     pos_hint: {'x': 0.6, 'y':0}
+#                     halign: 'right'
+#                     valign: 'middle'
+#         Button:
+#             text: 'Cancel'
+#             font_name: default_font
+#             font_size: self.height * 0.5
+#             text_size: self.width, None
+#             size_hint: (0.15, 0.05)
+#             pos_hint: {'x': 0.3, 'y': 0.05}
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/button_back_transparent.png'
+#             background_down: 'kv/images/button_back_transparent_pressed.png'
+#             on_release: app.root.current = 'MenuScreen'
+#         Button:
+#             text: 'Submit'
+#             font_name: default_font
+#             font_size: self.height * 0.5
+#             text_size: self.width, None
+#             size_hint: (0.15, 0.05)
+#             pos_hint: {'x': 0.55, 'y': 0.05}
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/button_back_transparent.png'
+#             background_down: 'kv/images/button_back_transparent_pressed.png'
+#             on_release: root.validateAndSaveNewPatient()
+#             #on_release: app.root.current = 'PatientInfoScreen'
+            
+# <SearchPatientsScreen>:
+#     searchResultsContainer: searchResultsContainer
+#     canvas.before:
+#         Rectangle:
+#             pos: self.pos
+#             size: self.size
+#             source: "kv/images/newload_back_doctor.png"
+#     FloatLayout:
+#         size_hint: (0.74, 0.95)
+#         pos_hint: {'x':0.13, 'y': 0.025}
+#         Image:
+#             source: "kv/images/search_icon.png"
+#             size_hint: (0.07, 0.13)
+#             keep_ratio: True
+#             pos_hint: {'x': 0, 'y': 0.85}
+#         SearchTextInput:
+#             size_hint: (0.85, .1)
+#             pos_hint: {'x':0.1, 'y': 0.84}
+#             on_text: root.search_for_patients(self.text)
+#         GridLayout:
+#             id: searchResultsContainer
+#             size_hint: (0.85, .65)
+#             pos_hint: {'x':0.075, 'y': 0.15}
+#             cols: 1
+#             spacing: 10
+#         Button:
+#             text: 'Cancel'
+#             font_name: default_font
+#             font_size: self.height * 0.5
+#             text_size: self.width, None
+#             size_hint: (0.1, 0.05)
+#             pos_hint: {'x': 0.45, 'y': 0.05}
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/button_back_transparent.png'
+#             background_down: 'kv/images/button_back_transparent_pressed.png'
+#             on_release: app.root.current = 'MenuScreen'
+
+# <PatientInfoScreen>:
+#     on_enter: root.set_up_patient_page()
+#     on_pre_leave: root.clear_patient_page()
+#     patientCaseContainer: patient_case_container
+#     patientInfoContainer: patient_info_container
+
+#     canvas.before:
+#         Color:
+#             rgba: 0.525, 0.529, 0.537, 1
+#         Rectangle:
+#             pos: self.pos
+#             size: self.size
+#     FloatLayout:
+#         id: content
+#         size_hint:(0.97, 0.98)
+#         pos_hint: {'x': 0.015, 'y': 0.01}
+#         CurrentPatientInfo:
+#             id: patient_info_container
+#         Button:
+#             text: 'Session Complete'
+#             font_name: default_font
+#             font_size: self.height * 0.35
+#             text_size: self.width, None
+#             size_hint: (0.17, 0.11)
+#             pos_hint: {'x': 0.81, 'y': 0.87}
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/button_back_transparent.png'
+#             background_down: 'kv/images/button_back_transparent_pressed.png'
+#             on_release: app.root.current = 'MenuScreen'
+#         ScrollView:
+#             size_hint: (1, 0.65)
+#             pos_hint: {'x': 0, 'y': 0.13}
+#             GridLayout:
+#                 cols: 2
+#                 id: patient_case_container
+#                 size_hint: (1, None)
+#                 height: self.minimum_height
+#                 spacing: 30
+#                 padding: 5, 10, 10, 10
+#         FloatLayout:
+#             id: option_buttons
+#             size_hint: (0.3, 0.1)
+#             pos_hint: {'x': 0.35, 'y': 0}
+#             SortCasesDropDown:
+#                 size_hint: (0.45, 0.8)
+#                 pos_hint: {'x':0, 'y': 0.1}
+#             Button:
+#                 text: 'New Case'
+#                 font_name: default_font
+#                 font_size: self.height * 0.5
+#                 text_size: self.width, None
+#                 size_hint: (0.45, 0.8)
+#                 pos_hint: {'x':0.55, 'y': 0.1}
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_normal: 'kv/images/button_back_transparent.png'
+#                 background_down: 'kv/images/button_back_transparent_pressed.png'
+#                 #on_release: app.root.current = 'LocationSelectionScreen'
+#                 on_release: root.create_new_case()
+
+# <CaseCheckpointScreen>:
+#     on_enter:
+#         root.set_up_images()
+#         root.set_up_checkpoint_page()
+#     on_pre_leave: root.clear_checkpoint_page()
+#     caseCheckpointsContainer: case_checkpoints_container
+#     patientInfoContainer: patientInfoContainer
+#     left_image: left_image
+#     right_image: right_image
+#     locationLabel: location_label
+
+#     canvas.before:
+#         Color:
+#             rgba: 0.525, 0.529, 0.537, 1
+#         Rectangle:
+#             pos: self.pos
+#             size: self.size
+
+#     FloatLayout:
+#         size_hint:(0.97, 0.98)
+#         pos_hint: {'x': 0.015, 'y': 0.01}
+#         CurrentPatientInfo:
+#             id: patientInfoContainer
+#         Button:
+#             text: 'Add a Checkpoint'
+#             font_name: default_font
+#             font_size: self.height * 0.35
+#             text_size: self.width, None
+#             size_hint: (0.17, 0.11)
+#             pos_hint: {'x': 0.81, 'y': 0.87}
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/button_back_transparent.png'
+#             background_down: 'kv/images/button_back_transparent_pressed.png'
+#             on_release: app.root.current = 'ImagingScreen'
+#         Label:
+#             id: location_label
+#             text: 'Location: Upper Arm'
+#             font_size: self.height * 0.6
+#             font_name: default_font
+#             size_hint: (0.4, .05)
+#             text_size: self.size
+#             halign: 'center'
+#             pos_hint: {'x': 0.3, 'y': 0.9}
+#         Label:
+#             text: 'Click and drag one checkpoint to each side of the line to compare.'
+#             font_size: self.height * 0.4
+#             font_name: default_font
+#             size_hint: (0.4, .05)
+#             text_size: self.size
+#             halign: 'center'
+#             pos_hint: {'x': 0.3, 'y': 0.87}
+#         FloatLayout:
+#             size_hint: (1, 0.53)
+#             pos_hint: {'x': 0, 'y': 0.26}
+#             canvas.after:
+#                 Color:
+#                     rgba: 1,1,1,1
+#                 Line:
+#                     width:2
+#                     cap: 'none'
+#                     points: self.pos[0] + self.width * 0.5, self.pos[1] + 10, self.pos[0] + self.width * 0.5, self.pos[1] + self.height - 10
+#             SelectImageDropDown:
+#                 id: left_image_selection
+#                 selected_image: left_image
+#                 size_hint: (0.15, 0.1)
+#                 pos_hint: {'x':0.165, 'y': 0.9}
+#             SelectImageDropDown:
+#                 id: right_image_selection
+#                 selected_image: right_image
+#                 size_hint: (0.15, 0.1)
+#                 pos_hint: {'x':0.685, 'y': 0.9}
+#             ZoomableImage:
+#                 id: left_image
+#                 #source: "kv/images/4.bmp"
+#                 size_hint: (0.48, .89)
+#                 pos_hint: {'x': 0, 'y': 0}
+#                 keep_ratio: True
+#                 my_label: ""
+#             ZoomableImage:
+#                 id: right_image
+#                 #source: "kv/images/4.bmp"
+#                 size_hint: (0.48, .89)
+#                 pos_hint: {'x': 0.52, 'y': 0}
+#                 keep_ratio: True
+#                 my_label: ""
+#         BoxLayout:
+#             id: case_checkpoints_container
+#             size_hint: (0.95, 0.24)
+#             pos_hint: {'x': 0.025, 'y': 0.01}
+#             spacing: 10
+
+# <Mannequin>:
+#     keep_data: True
+#     source: "kv/images/mannequinMini/map.png"
+#     size_hint: None, None
+#     size: self.texture_size
+#     pos_hint: {'center_x': 0.5, 'center_y': 0.48}
+
+# <LocationSelectionScreen>:
+#     on_enter:
+#         root.screen_setup()
+#     mannequinLayout: mannequin_layout
+#     bodyPartLabel: body_part_label
+#     doneButton: done_button
+#     userNameLabel: user_name_label
+
+#     canvas.before:
+#         Color:
+#             rgba: 0.525, 0.529, 0.537, 1
+#         Rectangle:
+#             pos: self.pos
+#             size: self.size
+
+#     FloatLayout:
+#         id: content
+#         size_hint:(0.97, 0.98)
+#         pos_hint: {'x': 0.015, 'y': 0.01}
+#         # The 3 "breadcrumbs" at the top, disabled because they are not meant to be clickable
+#         BoxLayout:
+#             orientation: 'horizontal'
+#             size_hint: (0.6, 0.05)
+#             pos_hint: {'x': 0.2, 'y': 0.93}
+#             spacing: self.width * 0.2
+#             canvas.after:
+#                 Color:
+#                     rgba: 1,1,1,1
+#                 Line:
+#                     width:2
+#                     cap: 'none'
+#                     points: self.pos[0] + self.width * 0.2, self.pos[1] + self.height/2, self.pos[0] + self.width * 0.4, self.pos[1] + self.height/2
+#                 Line:
+#                     width:2
+#                     cap: 'none'
+#                     points: self.pos[0] + self.width * 0.6, self.pos[1] + self.height/2, self.pos[0] + self.width * 0.8, self.pos[1] + self.height/2
+#             Button:
+#                 text: 'LOCATION'
+#                 font_name: default_font
+#                 font_size: self.height * 0.35
+#                 text_size: self.width, None
+#                 size_hint: (0.15, 1)
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_disabled_normal: 'kv/images/button_back_transparent_pressed.png'
+#                 disabled: True
+#             Button:
+#                 text: 'IMAGING'
+#                 font_name: default_font
+#                 font_size: self.height * 0.35
+#                 text_size: self.width, None
+#                 size_hint: (0.15, 1)
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_disabled_normal: 'kv/images/button_back_transparent.png'
+#                 disabled: True
+#             Button:
+#                 text: 'BOUNDING BOX'
+#                 font_name: default_font
+#                 font_size: self.height * 0.35
+#                 text_size: self.width, None
+#                 size_hint: (0.15, 1)
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_disabled_normal: 'kv/images/button_back_transparent.png'
+#                 disabled: True
+#         Button:
+#             text: 'Cancel Case'
+#             font_name: default_font
+#             font_size: self.height * 0.35
+#             text_size: self.width, None
+#             size_hint: (0.13, 0.08)
+#             pos_hint: {'x': 0.87, 'y': 0.91}
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/button_back_transparent.png'
+#             background_down: 'kv/images/button_back_transparent_pressed.png'
+#             on_release: app.root.current = 'PatientInfoScreen'
+#         FloatLayout:
+#             size_hint:(0.5, 0.87)
+#             pos_hint: {'x': 0.25, 'y': 0.03}
+#             Label:
+#                 id: user_name_label
+#                 text: ''
+#                 font_size: self.height * 0.5
+#                 font_name: default_font
+#                 size_hint: (1, .1)
+#                 halign: 'center'
+#                 pos_hint: {'x': 0, 'y': 0.92}
+#             Label:
+#                 id: body_part_label
+#                 text: ''
+#                 font_size: self.height * 0.5
+#                 font_name: default_font
+#                 size_hint: (1, .08)
+#                 halign: 'center'
+#                 pos_hint: {'x': 0, 'y': 0.88}
+
+#             # The mannequins
+#             BoxLayout:
+#                 orientation: 'horizontal'
+#                 size_hint:(1, 0.77)
+#                 pos_hint: {'x': 0, 'y': 0.1}
+#                 id: mannequin_layout
+
+#             Button:
+#                 id: done_button
+#                 text: 'DONE'
+#                 font_name: default_font
+#                 font_size: self.height * 0.35
+#                 text_size: self.width, None
+#                 size_hint: (0.14, 0.07)
+#                 pos_hint: {'x': 0.45, 'y': 0.05}
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 disabled: True
+#                 background_normal: 'kv/images/button_back_transparent.png'
+#                 background_down: 'kv/images/button_back_transparent_pressed.png'
+#                 on_release: app.root.current = 'ImagingScreen'
+#             Label:
+#                 text: 'Click on the Location'
+#                 font_size: self.height * 0.5
+#                 font_name: default_font
+#                 size_hint: (1, .05)
+#                 halign: 'center'
+#                 pos_hint: {'x': 0.012, 'y': 0.0}
+
+
+# <ImagingScreen>:
+#     cameraStatusLabel: cameraStatusLabel
+#     on_enter:
+#         root.initializeImagingScreen(live_view_display)
+#     on_leave: root.resetCameraStatusLabel()
+
+#     canvas.before:
+#         Color:
+#             rgba: 0.525, 0.529, 0.537, 1
+#         Rectangle:
+#             pos: self.pos
+#             size: self.size
+
+#     FloatLayout:
+#         id: content
+#         size_hint:(0.97, 0.98)
+#         pos_hint: {'x': 0.015, 'y': 0.01}
+#         # The 3 "breadcrumbs" at the top, disabled because they are not meant to be clickable
+#         BoxLayout:
+#             orientation: 'horizontal'
+#             size_hint: (0.6, 0.05)
+#             pos_hint: {'x': 0.2, 'y': 0.93}
+#             spacing: self.width * 0.2
+#             canvas.after:
+#                 Color:
+#                     rgba: 1,1,1,1
+#                 Line:
+#                     width:2
+#                     cap: 'none'
+#                     points: self.pos[0] + self.width * 0.2, self.pos[1] + self.height/2, self.pos[0] + self.width * 0.4, self.pos[1] + self.height/2
+#                 Line:
+#                     width:2
+#                     cap: 'none'
+#                     points: self.pos[0] + self.width * 0.6, self.pos[1] + self.height/2, self.pos[0] + self.width * 0.8, self.pos[1] + self.height/2
+#             Button:
+#                 text: 'LOCATION'
+#                 font_name: default_font
+#                 font_size: self.height * 0.35
+#                 text_size: self.width, None
+#                 size_hint: (0.15, 1)
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_disabled_normal: 'kv/images/button_back_transparent.png'
+#                 disabled: True
+#             Button:
+#                 text: 'IMAGING'
+#                 font_name: default_font
+#                 font_size: self.height * 0.35
+#                 text_size: self.width, None
+#                 size_hint: (0.15, 1)
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_disabled_normal: 'kv/images/button_back_transparent_pressed.png'
+#                 disabled: True
+#             Button:
+#                 text: 'BOUNDING BOX'
+#                 font_name: default_font
+#                 font_size: self.height * 0.35
+#                 text_size: self.width, None
+#                 size_hint: (0.15, 1)
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_disabled_normal: 'kv/images/button_back_transparent.png'
+#                 disabled: True
+#         Button:
+#             text: 'Cancel Case'
+#             font_name: default_font
+#             font_size: self.height * 0.35
+#             text_size: self.width, None
+#             size_hint: (0.13, 0.08)
+#             pos_hint: {'x': 0.87, 'y': 0.91}
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/button_back_transparent.png'
+#             background_down: 'kv/images/button_back_transparent_pressed.png'
+#             #on_release: app.root.current = 'PatientInfoScreen'
+#             on_release:
+#                 root.deinitializeImagingPage()
+#                 app.root.current = 'PatientInfoScreen'
+#         Button:
+#             text: 'Took Images'
+#             font_name: default_font
+#             font_size: self.height * 0.35
+#             text_size: self.width, None
+#             size_hint: (0.15, 0.1)
+#             opacity: 1 if self.parent.parent.debugMode else 0
+#             disabled: False if self.parent.parent.debugMode else True
+#             pos_hint: {'x': 0.83, 'y': 0.67}
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/button_back_transparent.png'
+#             background_down: 'kv/images/button_back_transparent_pressed.png'
+#             on_release:
+#                 root.deinitializeImagingPage()
+#                 app.root.current = 'BoundingBoxScreen'
+#         FloatLayout:
+#             size_hint:(0.5, 0.87)
+#             pos_hint: {'x': 0.25, 'y': 0.03}
+#             Label:
+#                 text: 'Setting Up Camera'
+#                 font_size: self.height * 0.5
+#                 font_name: default_font
+#                 size_hint: (1, .08)
+#                 halign: 'center'
+#                 pos_hint: {'x': 0, 'y': 0.92}
+#                 id: cameraStatusLabel
+#             Label:
+#                 text: 'Please Wait a Moment'
+#                 font_size: self.height * 0.5
+#                 font_name: default_font
+#                 size_hint: (1, .05)
+#                 halign: 'center'
+#                 pos_hint: {'x': 0, 'y': 0.87}
+#                 id: cameraStatusDescription
+#             # The live view image. Most likely need to replace this Image class with a custom Flea3 class.
+#             FloatLayout:
+#                 size_hint: (1, 0.82)
+#                 pos_hint: {'x':0, 'y': 0.05}
+#                 id:live_view_display
+#             Label:
+#                 text: 'Note: Please refrain from disconnecting wires during camera mode'
+#                 font_size: self.height * 0.5
+#                 font_name: default_font
+#                 size_hint: (1, .05)
+#                 halign: 'center'
+#                 pos_hint: {'x': 0, 'y': 0}
+
+# <AidaProgressBar>:
+#     id: pb
+#     max: 100 #9 image + 1 handling signal, each interval incremements by 10
+#     size_hint: (.8, 1)
+#     pos: self.pos
+#     pos_hint: {'x': 0.1, 'y': -0.3}
+
+#     canvas:
+#         BorderImage:
+#             border: (12, 12, 12, 12)
+#             pos: self.x, self.center_y - 12
+#             size: self.width, 24
+#             source: 'kv/images/grey.png'
+#             id: track #The background bar
+
+#         BorderImage:
+#             border: [int(min(self.width * (self.value / float(self.max)) if self.max else 0, 12))] * 4
+#             pos: self.x, self.center_y - 12
+#             size: self.width * (self.value / float(self.max)) if self.max else 0, 24
+#             source: 'kv/images/blue.png'
+#             id: train #The bar that increases in size and runs along the track
+
+# <BoundingBoxScreen>:
+#     on_enter:
+#         root.set_current_checkpoint_folder()
+#         boundingBox.set_derm_image(derm_image)
+#         boundingBox.start_mouse_detection()
+
+#     on_pre_leave: boundingBox.stop_mouse_detection()
+
+#     #background
+#     canvas.before:
+#         Color:
+#             rgba: 0.525, 0.529, 0.537, 1
+#         Rectangle:
+#             pos: self.pos
+#             size: self.size
+
+#     FloatLayout:
+#         id: content
+#         size_hint:(0.97, 0.98)
+#         pos_hint: {'x': 0.015, 'y': 0.01}
+#         # The 3 "breadcrumbs" at the top, disabled because they are not meant to be clickable
+#         BoxLayout:
+#             orientation: 'horizontal'
+#             size_hint: (0.6, 0.05)
+#             pos_hint: {'x': 0.2, 'y': 0.93}
+#             spacing: self.width * 0.2
+#             canvas.after:
+#                 Color:
+#                     rgba: 1,1,1,1
+#                 Line:
+#                     width:2
+#                     cap: 'none'
+#                     points: self.pos[0] + self.width * 0.2, self.pos[1] + self.height/2, self.pos[0] + self.width * 0.4, self.pos[1] + self.height/2
+#                 Line:
+#                     width:2
+#                     cap: 'none'
+#                     points: self.pos[0] + self.width * 0.6, self.pos[1] + self.height/2, self.pos[0] + self.width * 0.8, self.pos[1] + self.height/2
+#             Button:
+#                 text: 'LOCATION'
+#                 font_name: default_font
+#                 font_size: self.height * 0.35
+#                 text_size: self.width, None
+#                 size_hint: (0.15, 1)
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_disabled_normal: 'kv/images/button_back_transparent.png'
+#                 disabled: True
+#             Button:
+#                 text: 'IMAGING'
+#                 font_name: default_font
+#                 font_size: self.height * 0.35
+#                 text_size: self.width, None
+#                 size_hint: (0.15, 1)
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_disabled_normal: 'kv/images/button_back_transparent.png'
+#                 disabled: True
+#             Button:
+#                 text: 'BOUNDING BOX'
+#                 font_name: default_font
+#                 font_size: self.height * 0.35
+#                 text_size: self.width, None
+#                 size_hint: (0.15, 1)
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_disabled_normal: 'kv/images/button_back_transparent_pressed.png'
+#                 disabled: True
+#         Button:
+#             text: 'Cancel Case'
+#             font_name: default_font
+#             font_size: self.height * 0.35
+#             text_size: self.width, None
+#             size_hint: (0.13, 0.08)
+#             pos_hint: {'x': 0.87, 'y': 0.91}
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/button_back_transparent.png'
+#             background_down: 'kv/images/button_back_transparent_pressed.png'
+#             on_release: app.root.current = 'PatientInfoScreen'
+#             id: cancelCaseButton
+#         FloatLayout:
+#             size_hint:(0.5, 0.87)
+#             pos_hint: {'x': 0.25, 'y': 0.03}
+#             Label:
+#                 text: 'Please create a bounding box with the lesion inside'
+#                 font_size: self.height * 0.5
+#                 font_name: default_font
+#                 size_hint: (1, .08)
+#                 halign: 'center'
+#                 pos_hint: {'x': 0, 'y': 0.92}
+#             Label:
+#                 text: '(Click top left of the lesion, mouse the mouse to the bottom right and click again)'
+#                 font_size: self.height * 0.5
+#                 font_name: default_font
+#                 size_hint: (1, .05)
+#                 halign: 'center'
+#                 pos_hint: {'x': 0, 'y': 0.87}
+#             # The image to draw on
+#             Image:
+#                 id: derm_image
+#                 #source: "kv/images/1.bmp"
+#                 size_hint: (1, 0.82)
+#                 pos_hint: {'x':0, 'y': 0.05}
+#                 keep_ratio: True
+#             # The Bounding box drawing area
+#             BoundingBox:
+#                 id: boundingBox
+#                 size_hint: (1, 0.82)
+#                 pos_hint: {'x':0, 'y': 0.05}
+#                 sessionStorage: self.sessionStorage
+#         BoxLayout:
+#             size_hint: (0.1, 0.2)
+#             size_hint_min: (70, 100)
+#             size_hint_max: (300, 450)
+#             pos_hint: {'x':0.8, 'center_y': 0.5}
+#             orientation: 'vertical'
+#             spacing: self.height * 0.33
+#             Button:
+#                 text: 'Confirm'
+#                 font_name: default_font
+#                 font_size: self.height * 0.5
+#                 text_size: self.width, None
+#                 size_hint: (1, 0.33)
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_normal: 'kv/images/button_back_transparent.png'
+#                 background_down: 'kv/images/button_back_transparent_pressed.png'
+#                 on_release:
+#                     boundingBox.cropToBoundingBox() 
+#                     app.root.current = 'AnalysisScreen'
+#             Button:
+#                 text: 'Retake'
+#                 font_name: default_font
+#                 font_size: self.height * 0.5
+#                 text_size: self.width, None
+#                 size_hint: (1, 0.33)
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_normal: 'kv/images/button_back_transparent.png'
+#                 background_down: 'kv/images/button_back_transparent_pressed.png'
+#                 on_release: app.root.current = 'ImagingScreen'
+
+# <AnalysisScreen>:
+#     on_enter:
+#         root.set_current_checkpoint_folder()
+#         enhanced_image.setup()
+#         root.set_images()
+#         root.startAnalysisFunctions()
+#     on_pre_leave: root.clearMatchingCases()
+#     matchingCasesContainer: matching_cases_container
+#     matching_image: matching_image
+#     scroll_view_handler: scroll_view
+
+#     dermo_image: dermo_image
+#     derm_image: derm_image
+#     dermo_img: dermo_img
+#     matching_image: matching_image
+#     enhanced_image: enhanced_image
+
+#     # Hypodermoscopy
+#     hypodermoscopy_midsurf: hypodermoscopy_midsurf_image
+#     hypodermoscopy_deepsurf: hypodermoscopy_deepsurf_image
+
+#     # Color diffusion
+#     color_diffusion_map: color_diffusion_map_image
+
+#     # Scrollable depth
+#     scrollable_depth: scrollable_depth_image
+
+#     # The content objects
+#     hypodermoscopy_view_container: hypodermoscopy_view
+#     dermoscopy_view_container: dermoscopy_view
+#     color_diffusion_map_view_container: color_diffusion_map_view
+#     scrollable_depth_view_container: scrollable_depth_view
+#     matching_cases_view_container: matching_cases_view
+
+#     #Set background image
+#     canvas.before:
+#         Color:
+#             rgba: 0.525, 0.529, 0.537, 1
+#         Rectangle:
+#             pos: self.pos
+#             size: self.size
+
+#     # The content
+#     FloatLayout:
+#         id: content_view
+#         size_hint: (1, 1)
+#         pos_hint: {'x':0, 'y': 0}
+#         # All the content is in the scroll view
+#         ScrollView:
+#             id: scroll_view
+#             bar_margin: 10
+#             on_scroll_start: self.parent.parent.setScrollStartPos() 
+#             on_scroll_stop: self.parent.parent.snapScroll()
+#             scroll_wheel_distance: 1
+#             scroll_type: ['bars']
+#             bar_width: 0
+#             GridLayout:
+#                 size_hint: (1, None)
+#                 height: self.minimum_height
+#                 cols: 1
+#                 spacing: 50
+#                 # Hypodermoscopy
+#                 FloatLayout:
+#                     id: hypodermoscopy_view
+#                     size_hint: (1, None)
+#                     pos_hint: {'x':0, 'y': 0}
+#                     height: content_view.height
+
+#                     Label:
+#                         text: 'Hypodermoscopy'
+#                         font_size: self.height * 0.5
+#                         font_name: default_font
+#                         size_hint: (1, .06)
+#                         halign: 'center'
+#                         pos_hint: {'x': 0, 'y': 0.88}
+#                     FloatLayout:
+#                         size_hint: (0.7, 0.71)
+#                         pos_hint: {'x': 0.1, 'y': 0.15}
+#                         Label:
+#                             text: 'Level I'
+#                             font_size: self.height * 0.5
+#                             font_name: default_font
+#                             size_hint: (0.45, .05)
+#                             halign: 'center'
+#                             pos_hint: {'x': 0, 'y': 0.95}
+#                         ZoomableImage:
+#                             id: hypodermoscopy_midsurf_image
+#                             source: "kv/images/transparent_back.png"
+#                             size_hint: (0.45, 0.44)
+#                             pos_hint: {'x': 0, 'y': 0.51}
+#                             keep_ratio: True
+#                             my_label: "Hypodermoscopy Level I"
+#                         Label:
+#                             text: 'Level II'
+#                             font_size: self.height * 0.5
+#                             font_name: default_font
+#                             size_hint: (0.45, .05)
+#                             halign: 'center'
+#                             pos_hint: {'x': 0, 'y': 0.44}
+#                         ZoomableImage:
+#                             id: hypodermoscopy_deepsurf_image
+#                             source: "kv/images/transparent_back.png"
+#                             size_hint: (0.45, 0.44)
+#                             pos_hint: {'x': 0, 'y': 0}
+#                             keep_ratio: True
+#                             my_label: "Hypodermoscopy Level II"
+#                         ZoomableImage:
+#                             #source: "kv/images/4.bmp"
+#                             size_hint: (0.45, 0.45)
+#                             pos_hint: {'x': 0.55, 'y': 0.275}
+#                             keep_ratio: True
+#                             my_label: "Dermoscopy"
+#                             id: dermo_image
+#                     # Indicators
+#                     FloatLayout:
+#                         size_hint: (0.18, 0.80)
+#                         pos_hint: {'x': 0.8, 'y': 0.12}
+#                         BoxLayout:
+#                             orientation: 'vertical'
+#                             size_hint: (1, 1)
+#                             pos_hint: {'x': 0, 'y': 0}
+#                             spacing: 10
+#                             Label:
+#                                 text: 'Indicators'
+#                                 font_size: self.width * 0.1
+#                                 font_name: default_font
+#                                 text_size: self.size
+#                                 halign: 'center'
+#                             Label:
+#                                 text: 'Description'
+#                                 font_size: self.width * 0.06
+#                                 font_name: default_font
+#                                 text_size: self.size
+#                                 halign: 'center'
+#                             # The malignancy indicators   
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Irregular Shape"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Irregular Pigment"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Irregular Distribution"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Black Dots"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Grey-Blue Veil"
+#                             Label:
+#                                 text: 'Diameter'
+#                                 font_size: self.width * 0.06
+#                                 font_name: default_font
+#                                 text_size: self.size
+#                                 halign: 'center'
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "0-5 mm"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "5-10 mm"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "10-15 mm"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "15 mm +"
+#                             Label:
+#                                 text: 'Color'
+#                                 font_size: self.width * 0.06
+#                                 font_name: default_font
+#                                 text_size: self.size
+#                                 halign: 'center'
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Black"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Blue"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Red"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Grey"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Other"
+
+#                 # The dermoscopy view
+#                 FloatLayout:
+#                     id: dermoscopy_view
+#                     size_hint: (1, None)
+#                     pos_hint: {'x':0, 'y': 0}
+#                     height: content_view.height
+#                     Label:
+#                         text: 'Dermoscopy'
+#                         font_size: self.height * 0.5
+#                         font_name: default_font
+#                         size_hint: (1, .06)
+#                         halign: 'center'
+#                         pos_hint: {'x': 0, 'y': 0.85}
+#                     FloatLayout:
+#                         size_hint: (0.7, 0.71)
+#                         pos_hint: {'x': 0.05, 'y': 0.15}
+#                         Label:
+#                             text: 'Dermoscopy'
+#                             font_size: self.height * 0.7
+#                             font_name: default_font
+#                             size_hint: (0.48, .05)
+#                             halign: 'center'
+#                             text_size: self.size
+#                             pos_hint: {'x': 0, 'y': 0.92}
+#                         ZoomableImage:
+#                             size_hint: (0.48, 0.7)
+#                             pos_hint: {'x': 0, 'y': 0.2}
+#                             keep_ratio: True
+#                             my_label: "Dermoscopy"
+#                             id: dermo_img
+#                         Label:
+#                             text: 'Enhanced'
+#                             font_size: self.height * 0.7
+#                             font_name: default_font
+#                             size_hint: (0.48, .05)
+#                             halign: 'center'
+#                             text_size: self.size
+#                             pos_hint: {'x': 0.52, 'y': 0.92}
+#                         EnhancedImage:
+#                             id: enhanced_image
+#                             size_hint: (0.48, 0.7)
+#                             pos_hint: {'x': 0.52, 'y': 0.2}
+#                             keep_ratio: True
+#                             #on_parent: self.setup()
+#                             my_label: "Enhanced Dermoscopy"
+#                         FloatLayout:
+#                             size_hint: (0.48, 0.17)
+#                             pos_hint: {'x': 0.52, 'y': 0.02}
+#                             Label:
+#                                 text: 'Adjust Enhancement'
+#                                 font_size: self.height * 0.5
+#                                 font_name: default_font
+#                                 size_hint: (1, 0.33)
+#                                 halign: 'center'
+#                                 text_size: self.size
+#                                 pos_hint: {'x': 0, 'y': 0.66}
+#                             Slider:
+#                                 orientation: 'horizontal'
+#                                 range: (0.01, 1)
+#                                 value: 0.5
+#                                 size_hint: (1, 0.66)
+#                                 pos_hint: {'x': 0, 'y': 0}
+#                                 on_value: enhanced_image.changeCLAHE(self.value)
+#                     # Indicators
+#                     FloatLayout:
+#                         size_hint: (0.18, 0.80)
+#                         pos_hint: {'x': 0.8, 'y': 0.12}
+#                         BoxLayout:
+#                             orientation: 'vertical'
+#                             size_hint: (1, 1)
+#                             pos_hint: {'x': 0, 'y': 0}
+#                             spacing: 10
+#                             Label:
+#                                 text: 'Indicators'
+#                                 font_size: self.width * 0.1
+#                                 font_name: default_font
+#                                 text_size: self.size
+#                                 halign: 'center'
+#                             Label:
+#                                 text: 'Description'
+#                                 font_size: self.width * 0.06
+#                                 font_name: default_font
+#                                 text_size: self.size
+#                                 halign: 'center'
+#                             # The malignancy indicators   
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Irregular Shape"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Irregular Pigment"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Irregular Distribution"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Black Dots"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Grey-Blue Veil"
+#                             Label:
+#                                 text: 'Diameter'
+#                                 font_size: self.width * 0.06
+#                                 font_name: default_font
+#                                 text_size: self.size
+#                                 halign: 'center'
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "0-5 mm"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "5-10 mm"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "10-15 mm"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "15 mm +"
+#                             Label:
+#                                 text: 'Color'
+#                                 font_size: self.width * 0.06
+#                                 font_name: default_font
+#                                 text_size: self.size
+#                                 halign: 'center'
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Black"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Blue"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Red"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Grey"
+#                             AidaCheckBox:
+#                                 checkbox_label_text: "Other"
+
+
+#                 # The color diffusion map
+#                 FloatLayout:
+#                     id: color_diffusion_map_view
+#                     size_hint: (1, None)
+#                     pos_hint: {'x':0, 'y': 0}
+#                     height: content_view.height
+#                     Label:
+#                         text: 'Color Diffusion Map'
+#                         font_size: self.height * 0.5
+#                         font_name: default_font
+#                         size_hint: (1, .06)
+#                         halign: 'center'
+#                         pos_hint: {'x': 0, 'y': 0.85}
+#                     BoxLayout:
+#                         orientation: 'vertical'
+#                         size_hint: (0.5, 0.6)
+#                         pos_hint: {'x': 0.25, 'y': 0.2}
+#                         ZoomableImage:
+#                             id: color_diffusion_map_image
+#                             source: "kv/images/transparent_back.png"
+#                             size_hint: (1, 1)
+#                             keep_ratio: True
+#                             my_label: "Color Diffusion Map"
+#                 # The scrollable depth
+#                 FloatLayout:
+#                     id: scrollable_depth_view
+#                     size_hint: (1, None)
+#                     pos_hint: {'x':0, 'y': 0}
+#                     height: content_view.height
+#                     Label:
+#                         text: 'Scrollable Depth'
+#                         font_size: self.height * 0.5
+#                         font_name: default_font
+#                         size_hint: (1, .06)
+#                         halign: 'center'
+#                         pos_hint: {'x': 0, 'y': 0.85}
+#                     BoxLayout:
+#                         orientation: 'vertical'
+#                         size_hint: (0.5, 0.6)
+#                         pos_hint: {'x': 0.25, 'y': 0.2}
+#                         ZoomableGrayscaleImage:
+#                             id: scrollable_depth_image
+#                             source: ""
+#                             size_hint: (1, 1)
+#                             keep_ratio: True
+#                             my_label: "Scrollable Depth Image " + str(int(scrollable_slider.value))
+#                     Slider:
+#                         id: scrollable_slider
+#                         orientation: 'vertical'
+#                         range: (0, 35)
+#                         value: 35
+#                         size_hint: (0.03, 0.6)
+#                         pos_hint: {'x': 0.75, 'y': 0.2}
+#                         on_value: self.parent.parent.parent.parent.parent.changeScrollableDepthImage(self.value)
+#                 # The matching cases view
+#                 FloatLayout:
+#                     id: matching_cases_view
+#                     size_hint: (1, None)
+#                     pos_hint: {'x':0, 'y': 0}
+#                     height: content_view.height
+#                     Label:
+#                         text: 'Matching Cases'
+#                         font_size: self.height * 0.5
+#                         font_name: default_font
+#                         size_hint: (1, .06)
+#                         halign: 'center'
+#                         pos_hint: {'x': 0, 'y': 0.85}
+#                     BoxLayout:
+#                         orientation: 'horizontal'
+#                         size_hint: (0.7, 0.4)
+#                         pos_hint: {'x': 0.15, 'y': 0.43}
+#                         spacing: 20
+#                         ZoomableImage:
+#                             id: derm_image
+#                             size_hint: (0.48, 1)
+#                             keep_ratio: True
+#                             my_label: "Dermoscopy Image"
+#                         ZoomableImage:
+#                             id: matching_image
+#                             size_hint: (0.48, 1)
+#                             keep_ratio: True
+#                             my_label: "Matching Image"
+#                     BoxLayout:
+#                         orientation:'horizontal'
+#                         size_hint: (0.7, 0.3)
+#                         pos_hint: {'x': 0.15, 'y': 0.1}
+#                         ScrollView:
+#                             GridLayout:
+#                                 rows: 1
+#                                 id: matching_cases_container
+#                                 size_hint: (None, None)
+#                                 width: self.minimum_width
+#                                 height: self.minimum_height
+#                                 spacing: 30
+#                                 padding: 10, 10, 10, 10
+
+#     # The anchors at the top
+#     BoxLayout:
+#         size_hint: (1.02, 0.05)
+#         pos_hint: {'x':-0.01, 'y': 0.95}
+#         orientation: 'horizontal'
+#         spacing: 0
+#         canvas.before:
+#             Color:
+#                 rgba: (0.525, 0.529, 0.537, 1)
+#             Rectangle:
+#                 size: self.size
+#                 pos: self.pos
+#         Button:
+#             text: 'Hypodermoscopy'
+#             font_name: default_font
+#             font_size: self.height * 0.4
+#             text_size: self.width * 0.8, None
+#             size_hint: (0.2, 1)
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/anchor_back_transparent_selected.png' if (self.parent.parent.scroll_view_handler.scroll_y > 0.8) else 'kv/images/anchor_back_transparent.png'
+#             background_down: 'kv/images/anchor_back_transparent_pressed.png'
+#             on_release: self.parent.parent.scroll_view_handler.scroll_to(hypodermoscopy_view, 10, {'d':1.5, 't':"out_expo"})
+#         Button:
+#             text: 'Dermoscopy'
+#             font_name: default_font
+#             font_size: self.height * 0.4
+#             text_size: self.width * 0.8, None
+#             size_hint: (0.2, 1)
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/anchor_back_transparent_selected.png' if (self.parent.parent.scroll_view_handler.scroll_y > 0.6 and self.parent.parent.scroll_view_handler.scroll_y < 0.8) else 'kv/images/anchor_back_transparent.png'
+#             background_down: 'kv/images/anchor_back_transparent_pressed.png'
+#             on_release: self.parent.parent.scroll_view_handler.scroll_to(dermoscopy_view, 10, {'d':1.5, 't':"out_expo"})
+#         Button:
+#             text: 'Pigmentation'
+#             font_name: default_font
+#             font_size: self.height * 0.4
+#             text_size: self.width * 0.8, None
+#             size_hint: (0.2, 1)
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/anchor_back_transparent_selected.png' if (self.parent.parent.scroll_view_handler.scroll_y > 0.4 and self.parent.parent.scroll_view_handler.scroll_y < 0.6) else 'kv/images/anchor_back_transparent.png'
+#             background_down: 'kv/images/anchor_back_transparent_pressed.png'
+#             on_release: self.parent.parent.scroll_view_handler.scroll_to(color_diffusion_map_view, 10, {'d':1.5, 't':"out_expo"})
+#         Button:
+#             text: '3D Structure'
+#             font_name: default_font
+#             font_size: self.height * 0.4
+#             text_size: self.width * 0.8, None
+#             size_hint: (0.2, 1)
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/anchor_back_transparent_selected.png' if (self.parent.parent.scroll_view_handler.scroll_y > 0.2 and self.parent.parent.scroll_view_handler.scroll_y < 0.4) else 'kv/images/anchor_back_transparent.png'
+#             background_down: 'kv/images/anchor_back_transparent_pressed.png'
+#             on_release: self.parent.parent.scroll_view_handler.scroll_to(scrollable_depth_view, 10, {'d':1.5, 't':"out_expo"})
+#         Button:
+#             text: 'Matching Cases'
+#             font_name: default_font
+#             font_size: self.height * 0.4
+#             text_size: self.width * 0.8, None
+#             size_hint: (0.2, 1)
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/anchor_back_transparent_selected.png' if (self.parent.parent.scroll_view_handler.scroll_y < 0.2) else 'kv/images/anchor_back_transparent.png'
+#             background_down: 'kv/images/anchor_back_transparent_pressed.png'
+#             on_release: self.parent.parent.scroll_view_handler.scroll_to(matching_cases_view, 10, {'d':1.5, 't':"out_expo"})
+
+#     # The bottom bar 
+#     FloatLayout:
+#         size_hint: (1, 0.08)
+#         pos_hint: {'x':0, 'y': 0}
+#         canvas:
+#             Color:
+#                 rgba: (0.2, 0.2, 0.2, .5)
+#             Rectangle:
+#                 size: self.size
+#                 pos: self.pos
+#         Image:
+#             id: aida_logo
+#             source: "kv/images/AIDALogo.png"
+#             size_hint: (0.1, 0.6)
+#             pos_hint: {'x': 0.05, 'y': 0.2}
+#             keep_ratio: True
+#         Button:
+#             text: 'Patient Cases'
+#             font_name: default_font
+#             font_size: self.height * 0.4
+#             text_size: self.width, None
+#             size_hint: (0.1, 0.6)
+#             pos_hint: {'x': 0.85, 'y': 0.2}
+#             halign: 'center'
+#             valign: 'middle'
+#             background_normal: 'kv/images/button_back_transparent.png'
+#             background_down: 'kv/images/button_back_transparent_pressed.png'
+#             on_release: app.root.current = 'LoginScreen'
+
+#     # Notes drawer
+#     NotesDrawer:
+#         id: notes_drawer
+
+
+
+# ########################################################################
+# ########################### ADDITIONAL CLASSES #########################
+# ########################################################################
+
+# <CreateNewAccountPopup>:
+#     acc_username: acc_username
+#     acc_first_name: acc_first_name
+#     acc_last_name: acc_last_name
+#     acc_password: acc_password
+#     acc_email: acc_email
+#     acc_authority: acc_authority
+
+#     acc_username_error: acc_username_error
+#     acc_first_name_error: acc_first_name_error
+#     acc_last_name_error: acc_last_name_error
+#     acc_password_error: acc_password_error
+#     acc_email_error: acc_email_error
+#     acc_authority_error: acc_authority_error
+
+#     size_hint: (0.3, 0.5)
+#     title: 'Create New Account'
+#     title_align: 'center'
+#     title_size: '20sp'
+#     background: "kv/images/transparent_back.png"
+#     separator_color: 0.7, 0.7, 0.7
+#     BoxLayout:
+#         size_hint: (1,1)
+#         pos_hint: {'x': 0, 'y': 0}
+#         orientation: 'vertical'
+#         spacing: 10
+#         padding: 30
+#         canvas.before:
+#             BorderImage:
+#                 source: 'kv/images/new_patient_container_back.png'
+#                 pos: self.x - 3, self.y - 3
+#                 size: self.width + 6, self.height + 6
+#         FloatLayout:
+#             TextInput:
+#                 id: acc_username
+#                 hint_text: 'Username'
+#                 font_size: self.height * 0.4
+#                 font_name: default_font
+#                 background_color: 0, 0, 0, 0
+#                 multiline: False
+#                 size_hint: (1, 1)
+#                 pos_hint: {'x': 0, 'y':0}
+#                 canvas.before:
+#                     Color:
+#                         rgb: 1, 1, 1, 1
+#                     BorderImage:
+#                         source: 'kv/images/text_back_underline_white.png'
+#                         pos: self.x, self.y + self.height * 0.05
+#                         size: self.width, self.height
+#             Label:
+#                 id: acc_username_error
+#                 font_size: self.height * 0.3
+#                 font_name: default_font
+#                 color: 1,0,0
+#                 text_size: self.size
+#                 size_hint: (0.4, 1)
+#                 pos_hint: {'x': 0.6, 'y':0}
+#                 halign: 'right'
+#                 valign: 'middle'
+#         FloatLayout:
+#             TextInput:
+#                 id: acc_first_name
+#                 hint_text: 'First name'
+#                 font_size: self.height * 0.4
+#                 font_name: default_font
+#                 background_color: 0, 0, 0, 0
+#                 multiline: False
+#                 size_hint: (1, 1)
+#                 pos_hint: {'x': 0, 'y':0}
+#                 canvas.before:
+#                     Color:
+#                         rgb: 1, 1, 1, 1
+#                     BorderImage:
+#                         source: 'kv/images/text_back_underline_white.png'
+#                         pos: self.x, self.y + self.height * 0.05
+#                         size: self.width, self.height
+#             Label:
+#                 id: acc_first_name_error
+#                 font_size: self.height * 0.3
+#                 font_name: default_font
+#                 color: 1,0,0
+#                 text_size: self.size
+#                 size_hint: (0.4, 1)
+#                 pos_hint: {'x': 0.6, 'y':0}
+#                 halign: 'right'
+#                 valign: 'middle'
+#         FloatLayout:
+#             TextInput:
+#                 id: acc_last_name
+#                 hint_text: 'Last name'
+#                 font_size: self.height * 0.4
+#                 font_name: default_font
+#                 background_color: 0, 0, 0, 0
+#                 multiline: False
+#                 size_hint: (1, 1)
+#                 pos_hint: {'x': 0, 'y':0}
+#                 canvas.before:
+#                     Color:
+#                         rgb: 1, 1, 1, 1
+#                     BorderImage:
+#                         source: 'kv/images/text_back_underline_white.png'
+#                         pos: self.x, self.y + self.height * 0.05
+#                         size: self.width, self.height
+#             Label:
+#                 id: acc_last_name_error
+#                 font_size: self.height * 0.3
+#                 font_name: default_font
+#                 color: 1,0,0
+#                 text_size: self.size
+#                 size_hint: (0.4, 1)
+#                 pos_hint: {'x': 0.6, 'y':0}
+#                 halign: 'right'
+#                 valign: 'middle'
+#         FloatLayout:
+#             TextInput:
+#                 id: acc_password
+#                 hint_text: 'Password'
+#                 font_size: self.height * 0.4
+#                 font_name: default_font
+#                 background_color: 0, 0, 0, 0
+#                 multiline: False
+#                 password: True
+#                 size_hint: (1, 1)
+#                 pos_hint: {'x': 0, 'y':0}
+#                 canvas.before:
+#                     Color:
+#                         rgb: 1, 1, 1, 1
+#                     BorderImage:
+#                         source: 'kv/images/text_back_underline_white.png'
+#                         pos: self.x, self.y + self.height * 0.05
+#                         size: self.width, self.height
+#             Label:
+#                 id: acc_password_error
+#                 font_size: self.height * 0.3
+#                 font_name: default_font
+#                 color: 1,0,0
+#                 text_size: self.size
+#                 size_hint: (0.4, 1)
+#                 pos_hint: {'x': 0.6, 'y':0}
+#                 halign: 'right'
+#                 valign: 'middle'
+#         FloatLayout:
+#             TextInput:
+#                 id: acc_email
+#                 hint_text: 'Email'
+#                 font_size: self.height * 0.4
+#                 font_name: default_font
+#                 background_color: 0, 0, 0, 0
+#                 multiline: False
+#                 size_hint: (1, 1)
+#                 pos_hint: {'x': 0, 'y':0}
+#                 canvas.before:
+#                     Color:
+#                         rgb: 1, 1, 1, 1
+#                     BorderImage:
+#                         source: 'kv/images/text_back_underline_white.png'
+#                         pos: self.x, self.y + self.height * 0.05
+#                         size: self.width, self.height
+#             Label:
+#                 id: acc_email_error
+#                 font_size: self.height * 0.3
+#                 font_name: default_font
+#                 color: 1,0,0
+#                 text_size: self.size
+#                 size_hint: (0.4, 1)
+#                 pos_hint: {'x': 0.6, 'y':0}
+#                 halign: 'right'
+#                 valign: 'middle'
+#         FloatLayout:
+#             TextInput:
+#                 id: acc_authority
+#                 hint_text: 'Authority'
+#                 font_size: self.height * 0.4
+#                 font_name: default_font
+#                 background_color: 0, 0, 0, 0
+#                 multiline: False
+#                 size_hint: (1, 1)
+#                 pos_hint: {'x': 0, 'y':0}
+#                 canvas.before:
+#                     Color:
+#                         rgb: 1, 1, 1, 1
+#                     BorderImage:
+#                         source: 'kv/images/text_back_underline_white.png'
+#                         pos: self.x, self.y + self.height * 0.05
+#                         size: self.width, self.height
+#             Label:
+#                 id: acc_authority_error
+#                 font_size: self.height * 0.3
+#                 font_name: default_font
+#                 color: 1,0,0
+#                 text_size: self.size
+#                 size_hint: (0.4, 1)
+#                 pos_hint: {'x': 0.6, 'y':0}
+#                 halign: 'right'
+#                 valign: 'middle'
+#         FloatLayout:
+#             size_hint: (1, 0.5)
+#             Button:
+#                 text: 'Submit'
+#                 font_name: default_font
+#                 font_size: self.height * 0.5
+#                 text_size: self.width, None
+#                 size_hint: (0.4, 1)
+#                 pos_hint: {'x': 0.3, 'y':0}
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_normal: 'kv/images/button_back_transparent.png'
+#                 background_down: 'kv/images/button_back_transparent_pressed.png'
+#                 on_release: self.parent.parent.parent.parent.parent.validateAndaSaveInputs()
+
+
+# <PasswordRecoveryPopup>:
+#     acc_first_name: acc_first_name
+#     acc_last_name: acc_last_name
+#     acc_email: acc_email
+
+#     acc_first_name_error: acc_first_name_error
+#     acc_last_name_error: acc_last_name_error
+#     acc_email_error: acc_email_error
+
+#     size_hint: (0.3, 0.4)
+#     title: 'Password Recovery'
+#     title_align: 'center'
+#     title_size: '20sp'
+#     background: "kv/images/transparent_back.png"
+#     separator_color: 0.7, 0.7, 0.7
+#     BoxLayout:
+#         size_hint: (1,1)
+#         pos_hint: {'x': 0, 'y': 0}
+#         orientation: 'vertical'
+#         spacing: 10
+#         padding: 30
+#         canvas.before:
+#             BorderImage:
+#                 source: 'kv/images/new_patient_container_back.png'
+#                 pos: self.x - 3, self.y - 3
+#                 size: self.width + 6, self.height + 6
+#         FloatLayout:
+#             TextInput:
+#                 id: acc_first_name
+#                 hint_text: 'First name'
+#                 font_size: self.height * 0.4
+#                 font_name: default_font
+#                 background_color: 0, 0, 0, 0
+#                 multiline: False
+#                 size_hint: (1, 1)
+#                 pos_hint: {'x': 0, 'y':0}
+#                 canvas.before:
+#                     Color:
+#                         rgb: 1, 1, 1, 1
+#                     BorderImage:
+#                         source: 'kv/images/text_back_underline_white.png'
+#                         pos: self.x, self.y + self.height * 0.05
+#                         size: self.width, self.height
+#             Label:
+#                 id: acc_first_name_error
+#                 font_size: self.height * 0.3
+#                 font_name: default_font
+#                 color: 1,0,0
+#                 text_size: self.size
+#                 size_hint: (0.4, 1)
+#                 pos_hint: {'x': 0.6, 'y':0}
+#                 halign: 'right'
+#                 valign: 'middle'
+#         FloatLayout:
+#             TextInput:
+#                 id: acc_last_name
+#                 hint_text: 'Last name'
+#                 font_size: self.height * 0.4
+#                 font_name: default_font
+#                 background_color: 0, 0, 0, 0
+#                 multiline: False
+#                 size_hint: (1, 1)
+#                 pos_hint: {'x': 0, 'y':0}
+#                 canvas.before:
+#                     Color:
+#                         rgb: 1, 1, 1, 1
+#                     BorderImage:
+#                         source: 'kv/images/text_back_underline_white.png'
+#                         pos: self.x, self.y + self.height * 0.05
+#                         size: self.width, self.height
+#             Label:
+#                 id: acc_last_name_error
+#                 font_size: self.height * 0.3
+#                 font_name: default_font
+#                 color: 1,0,0
+#                 text_size: self.size
+#                 size_hint: (0.4, 1)
+#                 pos_hint: {'x': 0.6, 'y':0}
+#                 halign: 'right'
+#                 valign: 'middle'
+#         FloatLayout:
+#             TextInput:
+#                 id: acc_email
+#                 hint_text: 'Email'
+#                 font_size: self.height * 0.4
+#                 font_name: default_font
+#                 background_color: 0, 0, 0, 0
+#                 multiline: False
+#                 password: True
+#                 size_hint: (1, 1)
+#                 pos_hint: {'x': 0, 'y':0}
+#                 canvas.before:
+#                     Color:
+#                         rgb: 1, 1, 1, 1
+#                     BorderImage:
+#                         source: 'kv/images/text_back_underline_white.png'
+#                         pos: self.x, self.y + self.height * 0.05
+#                         size: self.width, self.height
+#             Label:
+#                 id: acc_email_error
+#                 font_size: self.height * 0.3
+#                 font_name: default_font
+#                 color: 1,0,0
+#                 text_size: self.size
+#                 size_hint: (0.4, 1)
+#                 pos_hint: {'x': 0.6, 'y':0}
+#                 halign: 'right'
+#                 valign: 'middle'
+        
+#         FloatLayout:
+#             size_hint: (1, 0.5)
+#             Button:
+#                 text: 'Send Recovery Email'
+#                 font_name: default_font
+#                 font_size: self.height * 0.5
+#                 text_size: self.width, None
+#                 size_hint: (0.4, 1)
+#                 pos_hint: {'x': 0.3, 'y':0}
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_normal: 'kv/images/button_back_transparent.png'
+#                 background_down: 'kv/images/button_back_transparent_pressed.png'
+#                 on_release: self.parent.parent.parent.parent.parent.validateInputs()
+
+# <SearchTextInput>:
+#     hint_text: 'SEARCH'
+#     font_size: self.height * 0.35
+#     font_name: default_font
+#     halign: 'center'
+#     background_color: 0, 0, 0, 0
+#     multiline: False
+#     size_hint_min: (500, 50)
+#     canvas.before:
+#         Color:
+#             rgb: 1, 1, 1, 1
+#         BorderImage:
+#             source: 'kv/images/text_back_underline_white.png'
+#             pos: self.x, self.y + self.height * 0.5 - (self.height * 0.35/2)
+#             size: self.width, self.height
+
+# <ZoomableImage>:
+#     keep_ratio: True
+#     keep_data: True
+
+# <ZoomableGrayscaleImage>:
+
+# <ZoomedPopup>:
+#     popup_image: popup_image
+#     size_hint: (0.6, 0.8)
+#     title: ''
+#     title_align: 'center'
+#     background: "kv/images/transparent_back.png"
+#     separator_color: 0.7, 0.7, 0.7
+#     canvas.before:
+#         Color:
+#             rgb: 0.45, 0.45, 0.45
+#         Rectangle:
+#             size: self.size
+#             pos: self.pos
+#     ClipView:
+#         #scroll_type: ['content']
+#         size_hint: (1, 0.98)
+#         pos_hint: {'x': 0, 'y': 0}
+#         DragContainer:
+#             zoomScrollContainer: zoom_scroll_container
+#             ZoomScrollContainer:
+#                 id: zoom_scroll_container
+#                 pos: self.parent.pos
+#                 Image:
+#                     id: popup_image
+#                     keep_ratio: True
+#                     source: "kv/images/transparent_back.png"
+#                     size_hint: (1,1)
+#                     pos_hint: {'x': 0, 'y': 0}
+
+# <ClipView>:
+
+# <AnimatedImage>:
+#     sourceDirectory: "kv/images/elucidLoading/"
+#     source: "kv/images/elucidLoading/000.png"
+#     size_hint: (1, 1)
+#     allow_stretch: True
+
+
+# <LoadingIndicator>:
+#     pop_up_text: _pop_up_text
+#     size_hint: (0.4, 0.4)
+#     auto_dismiss: True
+#     separator_height: 0
+#     title: ''
+#     animated_image: animatedImage
+#     background: "kv/images/transparent_back.png"
+
+#     BoxLayout:
+#         orientation: 'vertical'
+#         size_hint: (1, 1)
+
+#         AnimatedImage:
+#             id: animatedImage
+#         Label:
+#             id: _pop_up_text
+#             text: ''
+
+# <CurrentPatientInfo>:
+#     size_hint: (0.25, 0.2)
+#     pos_hint: {'x':0, 'y': 0.8}
+
+#     canvas.before:
+#         Color:
+#             rgb: 0.66, 0.66, 0.66
+#         Rectangle:
+#             size: self.size
+#             pos: self.pos
+
+#     Label:
+#         id: patientName
+#         text: ''
+#         font_name: default_font
+#         font_size: 30
+#         size_hint: (1, .1)
+#         halign: 'center'
+#         pos_hint: {'x':0.03, 'y': 0.75}
+#     Label:
+#         id: patientAge
+#         text: 'Age:'
+#         font_name: default_font
+#         font_size: 18
+#         size_hint: (0.8, .1)
+#         halign: 'left'
+#         text_size: self.width, None
+#         pos_hint: {'x':0.05, 'y': 0.46}
+#     Label: 
+#         id: patientSex
+#         text: 'Sex:'
+#         font_name: default_font
+#         font_size: 18
+#         size_hint: (0.8, .1)
+#         halign: 'left'
+#         text_size: self.width, None
+#         pos_hint: {'x':0.05, 'y': 0.34}
+#     Label:
+#         id: patientRace
+#         text: 'Race:'
+#         font_name: default_font
+#         font_size: 18
+#         size_hint: (0.8, .1)
+#         halign: 'left'
+#         text_size: self.width, None
+#         pos_hint: {'x':0.05, 'y': 0.22}
+#     Label:
+#         id: patientCancerHx
+#         text: 'Cancer Hx:'
+#         font_name: default_font
+#         font_size: 18
+#         size_hint: (0.8, .1)
+#         halign: 'left'
+#         text_size: self.width, None
+#         pos_hint: {'x':0.05, 'y': 0.1}
+
+
+# <SelectImageDropDown>:
+#     # A direct reference to the id dropdown needs to be kept or else it gets garbage collected.
+#     # Without this, it will crash upon pressing "sort" the second runthrough.
+#     # https://stackoverflow.com/questions/49367546/kivy-weakly-referenced-object-no-longer-exists
+#     dropdown: dropdown.__self__
+#     on_parent: dropdown.dismiss()
+
+#     Button:
+#         id: select_image_button
+#         text: 'Select Image'
+#         on_release: dropdown.open(self)
+#         size_hint: (1,1)
+#         font_name: default_font
+#         font_size: self.height * 0.5
+#         text_size: self.width, None
+#         halign: 'center'
+#         valign: 'middle'
+#         background_normal: 'kv/images/button_back_transparent.png'
+#         background_down: 'kv/images/button_back_transparent_pressed.png'
+
+#     DropDown:
+#         id: dropdown
+#         on_select:
+#             # Need to use parent of select_image_button instead of dropdown or self because parent of dropdown is some pygame window object instead of the SelectImageDropDown object
+#             select_image_button.parent.selected_image.my_label = '{}'.format(args[1])
+#             select_image_button.text = '{}'.format(args[1])
+#             print('Selected ' + '{}'.format(args[1]))
+
+#         Button:
+#             text: 'Level I'
+#             size_hint_y: None
+#             height: '40dp'
+#             on_release: dropdown.select('Level I')
+#         Button:
+#             text: 'Level II'
+#             size_hint_y: None
+#             height: '40dp'
+#             on_release: dropdown.select('Level II')
+#         Button:
+#             text: 'Dermoscopy'
+#             size_hint_y: None
+#             height: '40dp'
+#             on_release: dropdown.select('Dermoscopy')
+#         Button:
+#             text: 'Pigmentation'
+#             size_hint_y: None
+#             height: '40dp'
+#             on_release: dropdown.select('Pigmentation')
+
+# <SortCasesDropDown>:
+#     # A direct reference to the id dropdown needs to be kept or else it gets garbage collected.
+#     # Without this, it will crash upon pressing "sort" the second runthrough.
+#     # https://stackoverflow.com/questions/49367546/kivy-weakly-referenced-object-no-longer-exists
+#     dropdown: dropdown.__self__
+#     on_parent: dropdown.dismiss()
+
+#     Button:
+#         id: sort_button
+#         text: 'Sort'
+#         on_release: dropdown.open(self)
+#         size_hint: (1,1)
+#         font_name: default_font
+#         font_size: self.height * 0.5
+#         text_size: self.width, None
+#         halign: 'center'
+#         valign: 'middle'
+#         background_normal: 'kv/images/button_back_transparent.png'
+#         background_down: 'kv/images/button_back_transparent_pressed.png'
+
+#     DropDown:
+#         id: dropdown
+#         on_select: print('Sorting by ' + '{}'.format(args[1]))
+
+#         Button:
+#             text: 'Date'
+#             size_hint_y: None
+#             height: '48dp'
+#             on_release: dropdown.select('Date')
+#         Button:
+#             text: 'Malignancy'
+#             size_hint_y: None
+#             height: '48dp'
+#             on_release: dropdown.select('Malignancy')
+
+# <BoundingBox>:
+
+
+# <AidaCheckBox>:
+#     checkbox_label_text: ""
+#     size_hint: (1, 1)
+#     CheckBox:
+#         size_hint: (0.1, 0.8)
+#         pos_hint: {'x': 0, 'y': 0.1}
+#         background_checkbox_normal: 'kv/images/checkbox_unselected.png'
+#         background_checkbox_down: 'kv/images/checkbox_unselected.png'
+#         canvas.before:
+#             Color:
+#                 rgb: 1,1,1
+#             Rectangle:
+#                 pos:self.center_x-self.height/2, self.center_y-self.height/2
+#                 size:[self.height, self.height]
+#             Color:
+#                 rgb: (0.45,0.65,0.8) if (self.active) else (0.525,0.529,0.537)
+#             Rectangle:
+#                 pos:self.center_x-self.height/2 + 2, self.center_y-self.height/2 + 2
+#                 size:[self.height - 4, self.height - 4]
+#     Label:
+#         id: my_label
+#         size_hint: (0.8, 0.8)
+#         pos_hint: {'x': 0.15, 'y': 0.1}
+#         text: self.parent.checkbox_label_text
+#         text_size: self.size
+#         font_size: self.width * 0.06
+#         font_name: default_font
+#         valign: 'middle'
+
+# <EnhancedImage>:
+#     source: ""
+
+# <NotesDrawer>:
+#     drawer_opened: False
+#     flagged_notes_container: flagged_notes
+#     size_hint: (0.4, 0.8)
+#     pos_hint: {'x':-0.36, 'y': 0.1}
+
+#     # Notes container
+#     FloatLayout:
+#         size_hint: (1, 1)
+#         pos_hint: {'x': 0, 'y': 0}
+#         # The actual notes
+#         FloatLayout:
+#             size_hint: (0.9, 1)
+#             pos_hint: {'x': 0, 'y': 0}
+#             canvas.before:
+#                 BorderImage:
+#                     source: 'kv/images/notesAreaBack.png'
+#                     pos: self.x-3, self.y - 3
+#                     size: self.width+6, self.height+6
+#                 Color: 
+#                     rgba: (0.635, 0.636, 0.637, 1)
+#                 Rectangle:
+#                     size: self.size
+#                     pos: self.pos
+#             TextInput:
+#                 multiline: True
+#                 text: "Enter notes here"
+#                 size_hint: (0.95, 0.2)
+#                 pos_hint: {'x':0.025, 'y':0.78}
+#             Label:
+#                 text: 'Flagged'
+#                 font_size: self.height * 0.5
+#                 font_name: default_font
+#                 size_hint: (1, .05)
+#                 halign: 'center'
+#                 pos_hint: {'x': 0, 'y': 0.72}
+#             ScrollView:
+#                 id: flagged_scrollview
+#                 size_hint: (1, 0.7)
+#                 pos_hint: {'x': 0, 'y': 0}
+#                 bar_margin: 40
+#                 GridLayout:
+#                     id: flagged_notes
+#                     size_hint: (1, None)
+#                     height: self.minimum_height
+#                     cols: 1
+#                     spacing: 10
+#                     padding: 50, 0, 50, 0
+#         # The handlebar
+#         FloatLayout:
+#             size_hint: (0.1, 0.15)
+#             pos_hint: {'x': 0.9, 'y': 0.425}
+#             canvas.before:
+#                 Color: 
+#                     rgba: (0.635, 0.636, 0.637, 1)
+#                 Rectangle:
+#                     size: self.size
+#                     pos: self.pos
+#             Button:
+#                 id: toggle_notes_button
+#                 text: 'Notes'
+#                 on_release: self.parent.parent.parent.toggleDrawer()
+#                 font_name: default_font
+#                 font_size: self.width * 0.18
+#                 text_size: self.width, None
+#                 halign: 'center'
+#                 valign: 'middle'
+#                 background_normal: 'kv/images/notesToggleBack.png'
+#                 background_down: 'kv/images/notesToggleBack.png'
+#                 size_hint: (1,1)
+#                 pos_hint: {'x': 0, 'y': 0}
+
+

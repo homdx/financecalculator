@@ -1,0 +1,197 @@
+<MenuScreen>:
+    # on_pre_enter: root.set_user_information()
+    # welcome_label: welcome_label
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    # FloatLayout:
+    #     orientation: 'horizontal'
+    #     Label:
+    #         id: welcome_label
+    #         text: ''
+    #         font_size: self.height * 0.5
+    #         font_name: default_font
+    #         size_hint: (1, .1)
+    #         halign: 'center'
+    #         pos_hint: {'x':0, 'y': 0.85}
+    #     BoxLayout:
+    #         size_hint: (.4, .25)
+    #         pos_hint: {'x': 0.3, 'y': 0.5}
+    #         orientation: 'vertical'
+    #         spacing: 10
+
+
+    #         Button:
+    #             text: 'Future Case'
+    #             color: .25, .25, .25, 1
+    #             background_color: (0, 0, 0, 0)
+    #             on_release: root.create_future_case()
+    #             canvas.before:
+    #                 Color:
+    #                     rgba: .75, .75, .75, 1
+    #                 Line:
+    #                     width: 1
+    #                     rectangle: self.x, self.y, self.width, self.height
+                    
+    #         Button:
+    #             text: 'Present Case'
+    #             color: .25, .25, .25, 1
+    #             background_color: (0, 0, 0, 0)
+    #             on_release: app.load_overview()
+    #             canvas.before:
+    #                 Color:
+    #                     rgba: .75, .75, .75, 1
+    #                 Line:
+    #                     width: 1
+    #                     rectangle: self.x, self.y, self.width, self.height
+    #         Button:
+    #             text: 'Compare Future + Present Cases'
+    #             color: .25, .25, .25, 1
+    #             background_color: (0, 0, 0, 0)
+    #             on_release: app.load_overview()
+    #             canvas.before:
+    #                 Color:
+    #                     rgba: .75, .75, .75, 1
+    #                 Line:
+    #                     width: 1
+    #                     rectangle: self.x, self.y, self.width, self.height            # Button:
+
+
+
+    Accordion:
+
+        orientation: 'vertical' #if tbh.state == 'down' else 'vertical'
+        size_hint: (.4, .5)
+        pos_hint: {'x': 0.3, 'y': 0.3}
+        # size_hint_x: None
+        # size_hint_y: None
+        # all_collapsed: True
+
+        AccordionItem:
+            title: 'Future Case'
+            collapse: False
+            size_hint_x: None
+            size_hint_y: None
+            color: .25, .25, .25, 1
+            background_color: (0, 0, 0, 0)
+
+            BoxLayout:
+                canvas.before:
+                    Color:
+                        rgba: .75, .75, .75, 1
+                    Line:
+                        id:line_border
+                        width: 2
+                        rectangle: self.x, (self.y + 2), self.width, (self.height +20)
+                # size_hint_x: None
+                # size_hint_y: None
+                # size_hint: (.4, .25)
+                # pos_hint: {'x': 0.3, 'y': 0.5}
+                orientation: 'vertical'
+                spacing: 10
+
+                Button:
+                    text: 'New Case'
+                    color: .25, .25, .25, 1
+                    background_color: (0, 0, 0, 0)
+                    on_release: app.load_overview()
+                    canvas.before:
+                        Color:
+                            rgba: .75, .75, .75, 1
+                        Line:
+                            rectangle: self.x + self.width/4, self.y, self.width/2, 1
+                Button:
+                    text: 'Load Case'
+                    color: .25, .25, .25, 1
+                    background_color: (0, 0, 0, 0)
+                    on_release: app.load_overview()
+                    canvas.before:
+                        Color:
+                            rgba: .75, .75, .75, 1
+                        Line:
+                            rectangle: self.x + self.width/4, self.y, self.width/2, 1
+                    # canvas.before:
+                    #     Line:
+                    #         rectangle: self.x + self.width, self.y, self.width, 1
+
+                Button:
+                    text: 'Compare Cases'
+                    color: .25, .25, .25, 1
+                    background_color: (0, 0, 0, 0)
+                    on_release: app.load_overview()
+                    canvas.before:
+                        Line:
+                            # rectangle: self.x + self.width/4, self.y, self.width/2, 1
+                   
+        AccordionItem:
+            title: 'Present Case'
+            # collapse: False
+            Button:
+                text: 'Future Case OVERVIEW SCREEN!!'
+                color: .25, .25, .25, 1
+                background_color: (0, 0, 0, 0)
+                on_release: app.load_overview()
+                canvas.before:
+                    Color:
+                        rgba: .75, .75, .75, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Button:
+                text: 'Future Case OVERVIEW SCREEN!!'
+                color: .25, .25, .25, 1
+                background_color: (0, 0, 0, 0)
+                on_release: app.load_overview()
+                canvas.before:
+                    Color:
+                        rgba: .75, .75, .75, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+            Button:
+                text: 'Future Case OVERVIEW SCREEN!!'
+                color: .25, .25, .25, 1
+                background_color: (0, 0, 0, 0)
+                on_release: app.load_overview()
+                canvas.before:
+                    Color:
+                        rgba: .75, .75, .75, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+
+        AccordionItem:
+            title: 'Compare Future + Present Cases'
+            # all_collapse: False
+            Button:
+                text: 'Future Case OVERVIEW SCREEN!!'
+                color: .25, .25, .25, 1
+                background_color: (0, 0, 0, 0)
+                on_release: app.load_overview()
+                canvas.before:
+                    Color:
+                        rgba: .75, .75, .75, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+
+        AccordionItem:
+            title: 'Finance Tools'
+            # all_collapse: False
+            Button:
+                text: 'Future Case OVERVIEW SCREEN!!'
+                color: .25, .25, .25, 1
+                background_color: (0, 0, 0, 0)
+                on_release: app.load_overview()
+                canvas.before:
+                    Color:
+                        rgba: .75, .75, .75, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height
+        
+
