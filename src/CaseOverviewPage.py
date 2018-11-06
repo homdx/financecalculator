@@ -13,12 +13,12 @@ import os
 # class DrawingSpace(NavigationDrawer):
 #     pass
     
-class FutureCaseOverviewScreen(Screen):
+class CaseOverviewScreen(Screen):
 	session_storage = ObjectProperty()
 	welcome_label = ObjectProperty()
 
 	def set_user_information(self):
 		self.welcome_label.text = "Welcome, " + str(self.session_storage.loggedInUser)
 
-	def create_future_case(self):
+	def create_case(self):
 		self.parent.current = 'FutureCaseOverviewScreen'

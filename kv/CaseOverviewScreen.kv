@@ -1,4 +1,4 @@
-<FutureCaseOverviewScreen>:
+<CaseOverviewScreen>:
     # on_pre_enter: root.set_user_information()
     # welcome_label: welcome_label
     canvas.before:
@@ -7,6 +7,27 @@
         Rectangle:
             pos: self.pos
             size: self.size
+
+    AnchorLayout:
+        anchor_y:'top'
+
+        Label:
+            # pos_hint: {"x": .2, 'y':0.5}
+            id: case_label
+            size_hint_y: None
+            text_size: self.width, None
+            valign: 'center'
+            halign: 'center'
+            height: self.texture_size[1] * 2.5
+            text: 'Future Case Menu'
+            bcolor: .25, .25, .25, 1
+            canvas.before:
+                Color:
+                    rgba: self.bcolor
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
     FloatLayout:
         orientation: 'horizontal'
         Label:
@@ -25,7 +46,7 @@
 
 
             Button:
-                text: 'Future Case OVERVIEW SCREEN!!'
+                text: 'Income'
                 color: .25, .25, .25, 1
                 background_color: (0, 0, 0, 0)
                 on_release: app.load_overview()
@@ -37,7 +58,7 @@
                         rectangle: self.x, self.y, self.width, self.height
                     
             Button:
-                text: 'Present Case'
+                text: 'Expenses'
                 color: .25, .25, .25, 1
                 background_color: (0, 0, 0, 0)
                 on_release: app.load_overview()
@@ -48,7 +69,19 @@
                         width: 1
                         rectangle: self.x, self.y, self.width, self.height
             Button:
-                text: 'Compare Future + Present Cases'
+                text: 'Investments'
+                color: .25, .25, .25, 1
+                background_color: (0, 0, 0, 0)
+                on_release: app.load_overview()
+                canvas.before:
+                    Color:
+                        rgba: .75, .75, .75, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height            # Button:
+
+            Button:
+                text: 'Debts'
                 color: .25, .25, .25, 1
                 background_color: (0, 0, 0, 0)
                 on_release: app.load_overview()

@@ -5,7 +5,7 @@
 #:set default_font "kv/fonts/MavenPro-Regular.ttf"
 
 #:include force kv/MenuScreen.kv
-#:include force kv/FutureCaseOverviewScreen.kv
+#:include force kv/CaseOverviewScreen.kv
 
 
 
@@ -21,9 +21,9 @@ ScreenManager:
         id: menu_screen
         name: 'MenuScreen'
         manager: 'screen_manager'
-    FutureCaseOverviewScreen:
-        id: future_case_overview_screen
-        name: 'FutureCaseOverviewScreen'
+    CaseOverviewScreen:
+        id: case_overview_screen
+        name: 'CaseOverviewScreen'
         manager: 'screen_manager'
         # session_storage: session_storage
     # NewPatientScreen:

@@ -23,7 +23,7 @@ sys.path.insert(0, 'src')
 #: Load Aida Screen Classes. Needed for KV files to transition between screens
 # from LoginPage import LoginScreen
 from MenuPage import MenuScreen
-from FutureCaseOverviewPage import FutureCaseOverviewScreen#, DrawingSpace
+from CaseOverviewPage import CaseOverviewScreen#, DrawingSpace
 # from NewPatientPage import NewPatientScreen
 # from SearchPatientsPage import SearchPatientsScreen
 # from AnalysisPage import AnalysisScreen
