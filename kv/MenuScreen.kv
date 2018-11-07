@@ -1,5 +1,6 @@
+#:include kv/GUIManager.kv
 <MenuScreen>:
-    # on_pre_enter: root.set_user_information()
+
     # welcome_label: welcome_label
     canvas.before:
         Color:
@@ -287,7 +288,7 @@
                     # size_hint: (None, None)
                     color: .25, .25, .25, 1
                     background_color: (0, 0, 0, 0)
-                    on_release: app.load_overview()
+                    on_release: app.root.current = "IncomeScreen"
                     canvas.before:
                         Color:
                             rgba: .75, .75, .75, 1
@@ -318,6 +319,27 @@
                         Line:
                             rectangle: self.x + self.width/4, self.y, self.width/2, 1
 
+
+    AnchorLayout:
+        anchor_y:'bottom'
+        anchor_x: 'right'
+
+        Button:
+            text: 'Debug'
+            size_hint: (None, None)
+            color: 1, 1, 1, 1
+            background_color: (.1, .1, .1, 1)
+            opacity: 1 if self.parent.parent.debugMode else 0
+            disabled: False if self.parent.parent.debugMode else True
+            on_release: app.root.current = root.sessionStorage.debugScreen
+            # bcolor: .25, .25, .25, 1
+            # canvas.before:
+            #     Color:
+            #         rgba: self.bcolor
+            #     Rectangle:
+            #         pos: self.pos
+            #         size: self.size
+        
 
  
     # FloatLayout:

@@ -15,6 +15,9 @@
 ScreenManager:
     id: screen_manager
     transition: sm.FadeTransition(duration='.2')
+    # current: "IncomeScreen"
+
+
     #transition: sm.WipeTransition()
     #transition: sm.NoTransition()
 
@@ -23,6 +26,8 @@ ScreenManager:
         name: 'MenuScreen'
         manager: 'screen_manager'
         sessionStorage: session_storage
+        debugMode: session_storage.debugMode
+        on_pre_enter: root.switch_to("IncomeScreen")
     CaseOverviewScreen:
         id: case_overview_screen
         name: 'CaseOverviewScreen'
@@ -35,6 +40,7 @@ ScreenManager:
         sessionStorage: session_storage
     SessionStorage:
         id: session_storage
+
     # NewPatientScreen:
     #     id: newpatient_screen
     #     name: 'NewPatientScreen'

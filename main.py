@@ -27,7 +27,7 @@ from CaseOverviewPage import CaseOverviewScreen#, DrawingSpace
 from IncomePage import IncomeScreen
 
 debugMode = True  #: Set to true for debug mode
-debugScreen = IncomeScreen # screen would like to appear on
+debugScreen = "IncomeScreen" # screen would like to appear on
 # baseFilepath = os.path.join(os.path.expanduser('~'), 'Documents', 'AIDA/')
 
 
@@ -71,6 +71,7 @@ class SessionStorage(Screen):
     """
 
     debugMode = BooleanProperty(debugMode)
+    debugScreen = StringProperty(debugScreen)
     caseType = StringProperty()
 
 

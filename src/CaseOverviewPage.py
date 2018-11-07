@@ -18,6 +18,7 @@ class CaseOverviewScreen(Screen):
 	welcomeLabel = ObjectProperty()
 
 	def set_user_information(self):
+		print("MEH MEH")
 		self.welcomeLabel.text = str(self.sessionStorage.caseType) + " Case Menu"
 
 	def edit_income(self):
