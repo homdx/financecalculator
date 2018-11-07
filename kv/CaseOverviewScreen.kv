@@ -38,12 +38,20 @@
             size_hint: (1, .1)
             halign: 'center'
             pos_hint: {'x':0, 'y': 0.85}
-        BoxLayout:
-            size_hint: (.4, .25)
-            pos_hint: {'x': 0.3, 'y': 0.5}
+
+        GridLayout:
+            cols:2
+            size_hint: (.3, .25)
+            pos_hint: {'x': 0.27, 'y': 0.5}
             orientation: 'vertical'
             spacing: 10
 
+            AnchorLayout:
+                anchor_x: 'right'
+                Label:
+                    text: 'Step 1.'
+                    color: .25, .25, .25, 1
+                    size_hint_x: None
 
             Button:
                 text: 'Income'
@@ -56,7 +64,15 @@
                     Line:
                         width: 1
                         rectangle: self.x, self.y, self.width, self.height
-                    
+                
+
+            AnchorLayout:
+                anchor_x: 'right'
+                Label:
+                    text: 'Step 2.'
+                    color: .25, .25, .25, 1
+                    size_hint_x: None
+
             Button:
                 text: 'Expenses'
                 color: .25, .25, .25, 1
@@ -68,6 +84,13 @@
                     Line:
                         width: 1
                         rectangle: self.x, self.y, self.width, self.height
+           
+            AnchorLayout:
+                anchor_x: 'right'
+                Label:
+                    text: 'Step 3.'
+                    color: .25, .25, .25, 1
+                    size_hint_x: None
             Button:
                 text: 'Investments'
                 color: .25, .25, .25, 1
@@ -80,8 +103,34 @@
                         width: 1
                         rectangle: self.x, self.y, self.width, self.height            # Button:
 
+            
+            AnchorLayout:
+                anchor_x: 'right'
+                Label:
+                    text: 'Step 4.'
+                    color: .25, .25, .25, 1
+                    size_hint_x: None
             Button:
                 text: 'Debts'
+                color: .25, .25, .25, 1
+                background_color: (0, 0, 0, 0)
+                on_release: app.load_overview()
+                canvas.before:
+                    Color:
+                        rgba: .75, .75, .75, 1
+                    Line:
+                        width: 1
+                        rectangle: self.x, self.y, self.width, self.height            # Button:
+
+          
+            AnchorLayout:
+                anchor_x: 'right'
+                Label:
+                    text: 'Step 5.'
+                    color: .25, .25, .25, 1
+                    size_hint_x: None
+            Button:
+                text: 'View Overview'
                 color: .25, .25, .25, 1
                 background_color: (0, 0, 0, 0)
                 on_release: app.load_overview()
