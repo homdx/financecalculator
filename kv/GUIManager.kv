@@ -6,6 +6,7 @@
 
 #:include force kv/MenuScreen.kv
 #:include force kv/CaseOverviewScreen.kv
+#:include force kv/IncomeScreen.kv
 
 
 
@@ -25,6 +26,11 @@ ScreenManager:
     CaseOverviewScreen:
         id: case_overview_screen
         name: 'CaseOverviewScreen'
+        manager: 'screen_manager'
+        sessionStorage: session_storage
+    IncomeScreen:
+        id: income_screen
+        name: 'IncomeScreen'
         manager: 'screen_manager'
         sessionStorage: session_storage
     SessionStorage:

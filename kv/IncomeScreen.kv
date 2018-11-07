@@ -1,0 +1,47 @@
+<IncomeScreen>:
+    on_pre_enter: root.set_user_information()
+    welcomeLabel: case_label
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    AnchorLayout:
+        anchor_y:'top'
+
+        Label:
+            # pos_hint: {"x": .2, 'y':0.5}
+            id: case_label
+            size_hint_y: None
+            text_size: self.width, None
+            valign: 'center'
+            halign: 'center'
+            height: self.texture_size[1] * 2.5
+            text: 'Main Menu'
+            bcolor: .25, .25, .25, 1
+            canvas.before:
+                Color:
+                    rgba: self.bcolor
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+    FloatLayout:
+
+        Label:
+            id: instruction_label
+            text: 'Please enter your yearly gross income'
+            # font_size: self.height * 0.5
+            # font_name: default_font
+            size_hint: (1, .1)
+            halign: 'center'
+            pos_hint: {'x':0, 'y': 0.85}
+            bcolor: .25, .25, .25, 1
+            canvas.before:
+                Color:
+                    rgba: self.bcolor
+                Rectangle:
+                    pos: self.pos
+                    size: self.size

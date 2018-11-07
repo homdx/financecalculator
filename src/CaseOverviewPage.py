@@ -20,5 +20,5 @@ class CaseOverviewScreen(Screen):
 	def set_user_information(self):
 		self.welcomeLabel.text = str(self.sessionStorage.caseType) + " Case Menu"
 
-	def create_case(self):
-		self.parent.current = 'FutureCaseOverviewScreen'
+	def edit_income(self):
+		self.parent.current = 'IncomeScreen'
