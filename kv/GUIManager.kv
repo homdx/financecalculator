@@ -21,11 +21,14 @@ ScreenManager:
         id: menu_screen
         name: 'MenuScreen'
         manager: 'screen_manager'
+        sessionStorage: session_storage
     CaseOverviewScreen:
         id: case_overview_screen
         name: 'CaseOverviewScreen'
         manager: 'screen_manager'
-        # session_storage: session_storage
+        sessionStorage: session_storage
+    SessionStorage:
+        id: session_storage
     # NewPatientScreen:
     #     id: newpatient_screen
     #     name: 'NewPatientScreen'

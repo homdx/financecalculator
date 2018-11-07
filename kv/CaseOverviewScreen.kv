@@ -1,6 +1,6 @@
 <CaseOverviewScreen>:
-    # on_pre_enter: root.set_user_information()
-    # welcome_label: welcome_label
+    on_pre_enter: root.set_user_information()
+    welcomeLabel: case_label
     canvas.before:
         Color:
             rgba: 1, 1, 1, 1
@@ -19,7 +19,7 @@
             valign: 'center'
             halign: 'center'
             height: self.texture_size[1] * 2.5
-            text: 'Future Case Menu'
+            # text: 'Future Case Menu'
             bcolor: .25, .25, .25, 1
             canvas.before:
                 Color:

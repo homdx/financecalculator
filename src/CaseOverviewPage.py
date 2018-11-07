@@ -14,11 +14,11 @@ import os
 #     pass
     
 class CaseOverviewScreen(Screen):
-	session_storage = ObjectProperty()
-	welcome_label = ObjectProperty()
+	sessionStorage = ObjectProperty()
+	welcomeLabel = ObjectProperty()
 
 	def set_user_information(self):
-		self.welcome_label.text = "Welcome, " + str(self.session_storage.loggedInUser)
+		self.welcomeLabel.text = str(self.sessionStorage.caseType) + " Case Menu"
 
 	def create_case(self):
 		self.parent.current = 'FutureCaseOverviewScreen'

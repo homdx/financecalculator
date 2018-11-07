@@ -24,24 +24,9 @@ sys.path.insert(0, 'src')
 # from LoginPage import LoginScreen
 from MenuPage import MenuScreen
 from CaseOverviewPage import CaseOverviewScreen#, DrawingSpace
-# from NewPatientPage import NewPatientScreen
-# from SearchPatientsPage import SearchPatientsScreen
-# from AnalysisPage import AnalysisScreen
-# from PatientPage import PatientInfoScreen, CurrentPatientInfo, \
-#     SortCasesDropDown, SelectImageDropDown
 
-#Probably not needed
-# from PatientPage import CurrentPatientInfo, SortCasesDropDown, \
-#     SelectImageDropDown
-
-# from LocationPage import LocationSelectionScreen
-# from CheckpointPage import CaseCheckpointScreen
-# from ImagingPage import ImagingScreen
-# from AidaDataBaseHandler import AidaDataBaseHandler
-# from BoundingBoxPage import BoundingBoxScreen
 
 debugMode = False  #: Set to true for debug mode
-cloudAccess = True  #: Set to True to make AWS db calls throughout app
 # baseFilepath = os.path.join(os.path.expanduser('~'), 'Documents', 'AIDA/')
 
 
@@ -85,43 +70,48 @@ class SessionStorage(Screen):
     """
 
     debugMode = BooleanProperty(debugMode)
-    # cloudAccess = BooleanProperty(cloudAccess)
-    # baseFilepath = StringProperty(baseFilepath)
-    # loggedInUser = StringProperty()
-    loggedInAuthority = NumericProperty()
-    userAuthTokenAws = ""
-
-    # Imaging session information
-    currentAidaPid = StringProperty()
-    currentCaseNumber = NumericProperty()
-    currentCheckpointNumber = NumericProperty()
-    currentCheckpointFolder = StringProperty()
-
-    # Patient information
-    patientName = StringProperty()
-    patientFirstName = StringProperty()
-    patientMiddleName = StringProperty()
-    patientLastName = StringProperty()
-    patientAge = NumericProperty()
-    patientBirthDate = StringProperty()
-    patientPostalCode = StringProperty()
-    patientSex = StringProperty()
-    patientRace = StringProperty()
-    patientCancerHx = StringProperty()
-    locationOnBody = "place_holder"
+    caseType = StringProperty()
 
 
-    def user_logged_in(self, username, authority):
-        """The user has logged in, set corresponding sesionStorage attributes
-        Args:
-            username:
-            authority:
-        Returns:
-            None
-        """
-        self.loggedInUser = username
-        self.loggedInAuthority = authority
-        print("User logged in: " + str(username) + ", " + str(authority))
+
+
+    # # cloudAccess = BooleanProperty(cloudAccess)
+    # # baseFilepath = StringProperty(baseFilepath)
+    # # loggedInUser = StringProperty()
+    # loggedInAuthority = NumericProperty()
+    # userAuthTokenAws = ""
+
+    # # Imaging session information
+    # currentAidaPid = StringProperty()
+    # currentCaseNumber = NumericProperty()
+    # currentCheckpointNumber = NumericProperty()
+    # currentCheckpointFolder = StringProperty()
+
+    # # Patient information
+    # patientName = StringProperty()
+    # patientFirstName = StringProperty()
+    # patientMiddleName = StringProperty()
+    # patientLastName = StringProperty()
+    # patientAge = NumericProperty()
+    # patientBirthDate = StringProperty()
+    # patientPostalCode = StringProperty()
+    # patientSex = StringProperty()
+    # patientRace = StringProperty()
+    # patientCancerHx = StringProperty()
+    # locationOnBody = "place_holder"
+
+
+    # def user_logged_in(self, username, authority):
+    #     """The user has logged in, set corresponding sesionStorage attributes
+    #     Args:
+    #         username:
+    #         authority:
+    #     Returns:
+    #         None
+    #     """
+    #     self.loggedInUser = username
+    #     self.loggedInAuthority = authority
+    #     print("User logged in: " + str(username) + ", " + str(authority))
 
 
 class FinanceApp(App):
