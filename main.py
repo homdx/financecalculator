@@ -28,7 +28,7 @@ from IncomePage import IncomeScreen
 
 debugMode = True  #: Set to true for debug mode
 debugScreen = "IncomeScreen" # screen would like to appear on
-# baseFilepath = os.path.join(os.path.expanduser('~'), 'Documents', 'AIDA/')
+baseFilepath = os.path.join(os.path.expanduser('~'), 'Documents', '.financecalculator/')
 
 
 class SessionStorage(Screen):
@@ -72,6 +72,7 @@ class SessionStorage(Screen):
 
     debugMode = BooleanProperty(debugMode)
     debugScreen = StringProperty(debugScreen)
+    baseFilepath = StringProperty(baseFilepath)
     caseType = StringProperty()
 
 
@@ -130,6 +131,95 @@ class FinanceApp(App):
         Set up logging within AIDA
     """
 
+    def initialize_databases(self):
+
+        # check to see if main folder exists
+        if not os.path.isdir(baseFilepath):
+            os.mkdir(baseFilepath)
+
+
+        # Check to see if the databases exist already
+        if not os.path.isfile(baseFilepath + 'user.db'):
+            connection = sqlite3.connect(baseFilepath + 'user.db')
+            cursor = connection.cursor()
+
+            
+            # meta info
+            cursor.execute(
+                "CREATE TABLE metainfo("
+                "username varchar, "
+                "firstName varchar, "
+                "lastName varchar, "
+                "password varchar, "
+                "email varchar, "
+                "authority int, "
+                "country varchar, "
+                "prov varchar, "
+                "financeid varchar" # unique and identifiable for client search
+                "employment varchar, " # for product stats
+                ")"
+            )
+
+             # user case information data
+            cursor.execute(
+                "CREATE TABLE caseInfo("
+                "caseid varchar, "
+                "caseName varchar, "
+                "caseType varchar, "
+                ")"
+            )
+
+            # user income data
+            cursor.execute(
+                "CREATE TABLE income("
+                "caseid varchar, "
+                "category varchar, "
+                "value double, "
+                "expenseNum int, " # for organization purposes (not needed?)
+                "name varchar, "
+                ")"
+            )
+
+            # uesr expense data
+            cursor.execute(
+                "CREATE TABLE expenses("
+                "caseid varchar, "
+                "category varchar, "
+                "value double, "
+                "expenseNum int, " # for organization purposes (not needed?)
+                "name varchar, "
+                ")"
+            )
+
+            # user investments data
+            cursor.execute(
+                "CREATE TABLE investments("
+                "caseid varchar, "
+                "principle double, "
+                "interest double, "
+                "paymentNum int, "
+                "startDate varchar, "
+                "finishDate varchar, "
+            )
+
+            # user investments data
+            cursor.execute(
+                "CREATE TABLE debts("
+                "caseid varchar, "
+                "principle double, "
+                "interest double, "
+                "paymentNum int, "
+                "startDate varchar, "
+                "finishDate varchar, "
+            )
+
+
+            connection.commit()
+            connection.close()
+
+            print("Finished initializing db")
+
+
     def build(self):
         """Initializes the application; it will be called only once.
         If this method returns a widget (tree), it will be used as the root
@@ -149,6 +239,7 @@ class FinanceApp(App):
         # Set the default loading image
         # Loader.loading_image = 'kv/images/loading.gif'
 
+        self.initialize_databases()
 
         root = Builder.load_file("kv/GUIManager.kv")
         return root
