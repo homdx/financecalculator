@@ -12,6 +12,10 @@ class MenuScreen(Screen):
 	debugMode = BooleanProperty()
 	# welcome_label = ObjectProperty()
 
+	# def set_information(self):
+		# print("PRINT")
+		# self.parent.current = "IncomeScreen"
+
 	def set_actual_screen(self):
 		print(self.sessionStorage.debugScreen)
 		# self.welcome_label.text = "Welcome, " + str(self.session_storage.loggedInUser)

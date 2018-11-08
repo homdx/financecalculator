@@ -38,10 +38,25 @@
             size_hint: (1, .1)
             halign: 'center'
             pos_hint: {'x':0, 'y': 0.85}
-            bcolor: .25, .25, .25, 1
-            canvas.before:
-                Color:
-                    rgba: self.bcolor
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
+            color: 0,0,0,1
+
+        Label:
+            id: income_label
+            text: 'Income:'
+            # size_hint_x: None
+            font_size: self.height * 0.35
+            # font_name: default_font
+            size_hint: (1, .1)
+            halign: 'center'
+            pos_hint: {'x':-.4, 'y': 0.65}
+            color: 0,0,0,1
+
+    
+
+            # bcolor: .25, .25, .25, 1
+            # canvas.before:
+            #     Color:
+            #         rgba: self.bcolor
+            #     Rectangle:
+            #         pos: self.pos
+            #         size: self.size
