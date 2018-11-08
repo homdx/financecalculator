@@ -1,6 +1,11 @@
+#:import ListAdapter kivy.adapters.listadapter.ListAdapter
+#:import Factory kivy.factory.Factory
+#:include kv/Widgets.kv
+
 <IncomeScreen>:
     on_pre_enter: root.set_user_information()
     welcomeLabel: case_label
+    data: data_label
     canvas.before:
         Color:
             rgba: 1, 1, 1, 1
@@ -51,7 +56,20 @@
             pos_hint: {'x':-.4, 'y': 0.65}
             color: 0,0,0,1
 
-    
+
+        Label:
+            id: data_label
+            text: 'Income:'
+            # size_hint_x: None
+            font_size: self.height * 0.35
+            # font_name: default_font
+            size_hint: (1, .1)
+            halign: 'center'
+            pos_hint: {'x':-.4, 'y': 0.45}
+            color: 0,0,0,1
+
+        ListView:
+            adapter: ListAdapter(data=root.data_income, cls=Factory.IncomeListItem, args_converter=root.args_converter)
 
             # bcolor: .25, .25, .25, 1
             # canvas.before:
@@ -60,3 +78,4 @@
             #     Rectangle:
             #         pos: self.pos
             #         size: self.size
+
