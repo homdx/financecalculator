@@ -28,6 +28,9 @@ class IncomeScreen(Screen):
 		self.welcomeLabel.text = str(self.sessionStorage.caseType) + " Income"
 		self.data.text = str(self.sessionStorage.baseFilepath)
 
+		note_index = len(self.data_income)
+		self.data_income.append({'title': 'income %d' %note_index, 'content': '0', 'type':'income'})
+
 		# extract data if needed
 
 		# TEST: submit 

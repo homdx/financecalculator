@@ -4,6 +4,10 @@ from kivy.properties import ListProperty, StringProperty, \
         NumericProperty, BooleanProperty
 
 
+from kivy.clock import Clock
+
+
+
 
 class MutableTextInput(FloatLayout):
 
