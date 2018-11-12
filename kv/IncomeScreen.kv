@@ -68,8 +68,10 @@
             pos_hint: {'x':-.4, 'y': 0.45}
             color: 0,0,0,1
 
+
         ListView:
             adapter: ListAdapter(data=root.data_income, cls=Factory.IncomeListItem, args_converter=root.args_converter)
+            pos_hint: {'x': 0, 'y': -0.35}
 
             # bcolor: .25, .25, .25, 1
             # canvas.before:
