@@ -64,7 +64,15 @@
                 height : '35dp'
                 # width: self.textheight
                 color: .5,.5,.5, 1
-                on_release: app.del_OverviewListItem(root.note_index,root.note_type)
+                on_release: 
+                    self.color = .5,.5,.5, 1
+                    self.background_color = (1.0, 1.0, 1.0, 0.0)
+                    app.del_OverviewListItem(root.note_index,root.note_type)
+                on_press: 
+                    self.color = 1,1,1,1
+                    self.background_color = (0, 0, 0, 1.0)
+
+
                 background_color: (1.0, 1.0, 1.0, 0.0)
                 # canvas.before:
                 #     Color:
