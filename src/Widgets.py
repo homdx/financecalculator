@@ -6,7 +6,10 @@ from kivy.properties import ListProperty, StringProperty, \
 
 from kivy.clock import Clock
 
-
+"""
+To Do
+improve the the del_overviewListItem to be more elegant 
+"""
 
 
 class MutableTextInput(FloatLayout):
@@ -54,3 +57,30 @@ class IncomeListItem(BoxLayout):
     note_title = StringProperty()
     note_type = StringProperty()
     note_index = NumericProperty()
+
+    def del_OverviewListItem(self, note_index,note_type):
+        # delte from list
+
+        print(note_type)
+        print(note_index)
+        if note_type == 'income':
+            del self.overview.data_income[note_index]
+        elif note_type == 'expenditure':
+            del self.overview.data_expenditure[note_index]
+
+        # save and refresh
+        # self.save_overview(note_type)
+        # self.refresh_overview(note_type)
+
+class InvestmentListItem(BoxLayout):
+
+    def __init__(self, **kwargs):
+        print(kwargs)
+        del kwargs['index']
+        super(InvestmentListItem, self).__init__(**kwargs)
+    note_content = StringProperty()
+    note_title = StringProperty()
+    note_type = StringProperty()
+    note_index = NumericProperty()
+
+

@@ -8,6 +8,7 @@
 #:include kv/MenuScreen.kv
 #:include kv/CaseOverviewScreen.kv
 #:include kv/IncomeScreen.kv
+#:include kv/InvestmentScreen.kv
 
 
 
@@ -37,6 +38,11 @@ ScreenManager:
     IncomeScreen:
         id: income_screen
         name: 'IncomeScreen'
+        manager: 'screen_manager'
+        sessionStorage: session_storage
+    InvestmentScreen:
+        id: investment_screen
+        name: 'InvestmentScreen'
         manager: 'screen_manager'
         sessionStorage: session_storage
     SessionStorage:

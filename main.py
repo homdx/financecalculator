@@ -25,9 +25,10 @@ sys.path.insert(0, 'src')
 from MenuPage import MenuScreen
 from CaseOverviewPage import CaseOverviewScreen#, DrawingSpace
 from IncomePage import IncomeScreen
+from InvestmentPage import InvestmentScreen
 
 debugMode = True  #: Set to true for debug mode
-debugScreen = "IncomeScreen" # screen would like to appear on
+debugScreen = "InvestmentScreen" # screen would like to appear on
 baseFilepath = os.path.join(os.path.expanduser('~'), 'Documents', '.financecalculator/')
 
 

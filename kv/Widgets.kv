@@ -55,7 +55,7 @@
                 # font_size='20'
                 # width: self.textheight
                 color: .5,.5,.5, 1
-                on_release: app.del_OverviewListItem(root.note_index,root.note_type)
+                on_release: root.parent.parent.parent.parent.parent.del_OverviewListItem(root.note_index,root.note_type)
                 background_color: (1.0, 1.0, 1.0, 0.0)
                 # canvas.before:
                 #     Color:
@@ -118,3 +118,102 @@
         #     text: 'Gross Income IS:'
             # text_size: self.size
             # halign: 'right'
+
+
+<InvestmentListItem>:
+    on_note_content: app.set_overview_content(self.note_index, self.note_content,self.note_type)
+    on_note_title: app.set_overview_title(self.note_index, self.note_title,self.note_type)
+
+
+    height: '48sp'
+    size_hint_y: None
+
+    # bcolor: .25, .25, .25, 1
+    # canvas.before:
+    #     Color:
+    #         rgba: self.bcolor
+    #     Rectangle:
+    #         pos: self.pos
+    #         size: self.size
+
+    canvas.before:
+        Color:
+            rgba: .75, .75, .75, 1
+        Line:
+            id:line_border
+            width: 2
+            rectangle: self.x, self.y , self.width, (self.height)
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        BoxLayout:
+            orientation: 'horizontal'
+
+            padding: '5dp'
+            spacing: 20
+
+            Button:
+                text: '[size=25]X[/size]'
+                size_hint_x: None
+                size_hint_y: None
+                size: self.texture_size
+                markup: True
+                # font_size='20'
+                # width: self.textheight
+                color: .5,.5,.5, 1
+                on_release: root.parent.parent.parent.parent.parent.del_OverviewListItem(root.note_index,root.note_type)
+                background_color: (1.0, 1.0, 1.0, 0.0)
+                # canvas.before:
+                #     Color:
+                #         rgba: 1, 1, 1, 1
+                #     Rectangle: 
+                #         pos: self.pos
+                #         size: self.size
+                canvas.before:
+                    Color:
+                        rgba: .75, .75, .75, 1
+                    Line:
+                        id:line_border
+                        width: 1
+                        rectangle: self.x, self.y, self.width, (self.height)
+
+            MutableLabelTextInput:
+                canvas.before:
+                    Color:
+                        rgb: .4, .2, .3
+                    Rectangle:
+                        pos: self.pos
+                        size: self.width, 3
+                text: root.note_title
+                font_size: '16sp'
+                multiline: False
+                on_text: root.note_title = self.text
+
+            Label:
+                text: 'Gross:'
+                color: 0,0,0,1
+
+            MutableLabelTextInput:
+                canvas.before:
+                    Color:
+                        rgb: .4, .2, .3
+                    Rectangle:
+                        pos: self.pos
+                        size: self.width, 3
+                text: root.note_content
+                font_size: '16sp'
+                multiline: False
+                on_text: root.note_content = self.text
+
+            Label:
+                text: 'Net:'
+                # text_size: self.size
+                halign: 'left'
+                color: 0,0,0,1
+
+            CheckBox:
+                # group: 'check'
+                id : chkGross
+                on_active: app.checkGross()
+                color: 0,0,0,1

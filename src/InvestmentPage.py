@@ -7,16 +7,14 @@ from kivy.uix.widget import Widget
 import os
 # import sqlite3
 
-from Widgets import IncomeListItem, MutableTextInput
+from Widgets import InvestmentListItem, MutableTextInput
 
-class IncomeScreen(Screen):
+class InvestmentScreen(Screen):
 	"""
 	TODO:
 		- test to store information
 		- test ot load information
 		- format fields
-		- fix X-ing out of widget
-		- convert listview (deprecated) to recyclerview
 	"""
 	sessionStorage = ObjectProperty()
 	welcomeLabel = ObjectProperty()
@@ -27,12 +25,15 @@ class IncomeScreen(Screen):
 	def set_user_information(self):
 
 		# welcome fields
-		self.welcomeLabel.text = str(self.sessionStorage.caseType) + " Income"
+		self.welcomeLabel.text = str(self.sessionStorage.caseType) + " Investments"
 		self.data.text = str(self.sessionStorage.baseFilepath)
 
 		note_index = len(self.data_income)
 		self.data_income.append({'title': 'income %d' %note_index, 'content': '0', 'type':'income'})
- 
+
+		# extract data if needed
+
+		# TEST: submit 
 
 	def args_converter(self, row_index, item):
 		return {

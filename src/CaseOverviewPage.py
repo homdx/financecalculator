@@ -23,3 +23,15 @@ class CaseOverviewScreen(Screen):
 
 	def edit_income(self):
 		self.parent.current = 'IncomeScreen'
+
+	def edit_expenses(self):
+		self.parent.current = 'IncomeScreen'
+
+	def edit_investments(self):
+		self.parent.current = 'InvestmentScreen'
+
+	def edit_debts(self):
+		self.parent.current = 'IncomeScreen'
+
+	def view_overview(self):
+		self.parent.current = 'IncomeScreen'

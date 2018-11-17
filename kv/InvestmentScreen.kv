@@ -2,7 +2,7 @@
 #:import Factory kivy.factory.Factory
 #:include kv/Widgets.kv
 
-<IncomeScreen>:
+<InvestmentScreen>:
     on_pre_enter: root.set_user_information()
     welcomeLabel: case_label
     data: data_label
@@ -37,7 +37,7 @@
 
         Label:
             id: instruction_label
-            text: 'Please enter your yearly gross income'
+            text: 'Please enter all details of your future investments; provide best your best estimate'
             # font_size: self.height * 0.5
             # font_name: default_font
             size_hint: (1, .1)
@@ -54,7 +54,7 @@
             pos_hint: {'x':0, 'y': .601}
 
             Button:
-                text: '[size=40]+[/size][size=30]  Add Income[/size]'
+                text: '[size=40]+[/size][size=30]  Add Investments[/size]'
                 # size_hint_x: None
                 size_hint_y: None
                 # size: self.texture_size
@@ -114,7 +114,7 @@
 
 
         ListView:
-            adapter: ListAdapter(data=root.data_income, cls=Factory.IncomeListItem, args_converter=root.args_converter)
+            adapter: ListAdapter(data=root.data_income, cls=Factory.InvestmentListItem, args_converter=root.args_converter)
             pos_hint: {'x': 0, 'y': -0.4}
 
             # bcolor: .25, .25, .25, 1
