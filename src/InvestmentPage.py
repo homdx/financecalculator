@@ -20,7 +20,7 @@ class InvestmentScreen(Screen):
 	welcomeLabel = ObjectProperty()
 	data = ObjectProperty()
 
-	data_income = ListProperty() # temp
+	data_investments = ListProperty() # temp
 
 	def set_user_information(self):
 
@@ -28,8 +28,8 @@ class InvestmentScreen(Screen):
 		self.welcomeLabel.text = str(self.sessionStorage.caseType) + " Investments"
 		self.data.text = str(self.sessionStorage.baseFilepath)
 
-		note_index = len(self.data_income)
-		self.data_income.append({'title': 'income %d' %note_index, 'content': '0', 'type':'income'})
+		note_index = len(self.data_investments)
+		self.data_investments.append({'title': 'income %d' %note_index, 'content': '0', 'type':'income'})
 
 		# extract data if needed
 
@@ -43,14 +43,14 @@ class InvestmentScreen(Screen):
             'note_title': item['title']}
 
 	def add_income(self):
-		note_index = len(self.data_income)
-		self.data_income.append({'title': 'income %d' %note_index, 'content': '0', 'type':'income'})
+		note_index = len(self.data_investments)
+		self.data_investments.append({'title': 'income %d' %note_index, 'content': '0', 'type':'income'})
         # self.save_overview('income')  function for updating income 
 
 	def del_OverviewListItem(self, note_index,note_type):
 	        # delte from list
 	        if note_type == 'income':
-	            del self.data_income[note_index]
+	            del self.data_investments[note_index]
 	        elif note_type == 'expenditure':
 	            del self.data_expenditure[note_index]
 
