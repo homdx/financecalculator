@@ -9,6 +9,17 @@ import os
 
 from Widgets import InvestmentListItem, MutableTextInput
 
+
+from random import sample
+from string import ascii_lowercase
+
+from kivy.uix.popup import Popup
+
+class MessageBox(Popup):
+
+    def popup_dismiss(self):
+        self.dismiss()
+
 class InvestmentScreen(Screen):
 	"""
 	TODO:
@@ -79,3 +90,25 @@ class InvestmentScreen(Screen):
 
 	def compare_present_cases(self):
 		self.parent.current = ''#FutureCaseOverviewScreen'
+
+	def populate(self):
+		self.rv.data = [{'value': ''.join(sample(ascii_lowercase, 6))}
+						for x in range(50)]
+
+	def sort(self):
+		self.rv.data = sorted(self.rv.data, key=lambda x: x['value'])
+
+	def clear(self):
+		self.rv.data = []
+
+	def insert(self, value):
+		self.rv.data.insert(0, {'value': value or 'default value'})
+
+	def update(self, value):
+		if self.rv.data:
+			self.rv.data[0]['value'] = value or 'default new value'
+			self.rv.refresh_from_data()
+
+	def remove(self):
+		if self.rv.data:
+			self.rv.data.pop(0)
