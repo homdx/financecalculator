@@ -2,6 +2,7 @@
 from kivy.uix.screenmanager import Screen
 from kivy.properties import ObjectProperty, StringProperty, ListProperty
 from kivy.uix.widget import Widget
+from kivy.factory import Factory
 
 # from accordion_edit import Accordion
 import os
@@ -17,8 +18,22 @@ from kivy.uix.popup import Popup
 
 class MessageBox(Popup):
 
-    def popup_dismiss(self):
-        self.dismiss()
+	data_investments = ListProperty()
+	account = ObjectProperty()
+
+	def __init__(self):
+		# self.data_investments = data_investments
+		# self.account.set_text = data_investments
+		# self.account.text = "data_investments[0]"
+
+		super(MessageBox,self).__init__()
+
+
+	def set_info(self):
+		self.account.text = "ypypy"
+
+	def popup_dismiss(self):
+		self.dismiss()
 
 class InvestmentScreen(Screen):
 	"""
@@ -112,3 +127,10 @@ class InvestmentScreen(Screen):
 	def remove(self):
 		if self.rv.data:
 			self.rv.data.pop(0)
+
+	def create_new_account(self):
+		messageBox = Factory.MessageBox()
+		# messageBox.account.set_text = "mymy"
+		# print(self.data_investments)
+		messageBox.set_info()
+		messageBox.open()

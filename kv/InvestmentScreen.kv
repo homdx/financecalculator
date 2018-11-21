@@ -3,6 +3,7 @@
 #:include kv/Widgets.kv
 
 <MessageBox>:
+    account: account
     id: msg_box
     title: 'Popup Message Box'
     size_hint: None, None
@@ -11,7 +12,12 @@
     BoxLayout:
         orientation: 'vertical'
         Label:
+            id: account
             text: "Hello" #app.root.rv_layout.selected_value
+        TextInput:
+            # id: account
+            hint_text: "Account" #app.root.rv_layout.selected_value
+            multiline: False
         Button:
             size_hint: 1, 0.2
             text: 'OK'
@@ -29,7 +35,7 @@
     Button:
         text: root.value
         background_color: (0.9, 0.9, 0.9, 0.5)
-        on_release: Factory.MessageBox().open()
+        on_release: root.parent.parent.parent.parent.parent.create_new_account() #Factory.MessageBox().open()
         # canvas.before:
         # Color:
         #     rgba: 0.9, 0.9, 0.1, 1
